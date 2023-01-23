@@ -1,4 +1,4 @@
-# Car Booking Project
+# Car Booking Application
 As an admin for a car company I would like to have an application to book cars and view users.
 
 When booking a new car should the application ask for:
