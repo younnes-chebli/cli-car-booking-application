@@ -19,6 +19,6 @@ When booking a new car should the application ask for:
 * View Available Electric Cars
 * View All Users
 
-## Important
+### Important
 * We will use Arrays to hold any data. We will not use Lists at the first point. We will later.
 * We also won't use dependency injection at this point. We will later.
