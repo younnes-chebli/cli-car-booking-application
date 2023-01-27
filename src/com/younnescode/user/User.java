@@ -16,18 +16,6 @@ public class User {
         this.name = name;
     }
 
-    public UUID getId() {
-        return id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public static User[] getUsers() {
         return userService.getUsers();
     }

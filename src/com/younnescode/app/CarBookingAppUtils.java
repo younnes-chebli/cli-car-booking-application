@@ -1,8 +1,11 @@
 package com.younnescode.app;
 
+import com.younnescode.booking.Booking;
 import com.younnescode.car.Car;
 import com.younnescode.user.User;
 
+import java.util.Arrays;
+import java.util.Objects;
 import java.util.Scanner;
 
 class CarBookingAppUtils {
@@ -13,30 +16,83 @@ class CarBookingAppUtils {
         showMenu();
     }
 
-    private static void bookCar() {
-
+    private static void noBookingsAvailable() {
+        System.out.println("No Bookings Available\n");
+        showMenu();
     }
 
-    private static void viewAllUsersBookedCars() {
-
+    private static void noCarsBooked(User user) {
+        System.out.println(user + " has no car Booked");
+        showMenu();
     }
 
-    private static void viewAllBookings() {
+    private static void showUsers() {
+        User[] users = User.getUsers();
 
+        for (User user : users) {
+            System.out.println(user);
+        }
     }
 
-    private static void viewAvailableCars() {
-        Car[] availableCars = Car.getCars();
+    private static void showAvailableCars() {
+        Car[] availableCars = Car.getAvailableCars();
 
         for (Car availableCar : availableCars) {
             System.out.println(availableCar);
+        }
+    }
+
+    private static String askForUserId() {
+        System.out.print("Select User ID: ");
+        String userId = scan.nextLine();
+        return userId;
+    }
+
+    private static String askForRegNumber() {
+        System.out.print("Select Car Reg Number: ");
+        String regNumber = scan.nextLine();
+        return regNumber;
+    }
+
+    private static void bookCar() {
+        showAvailableCars();
+        System.out.println();
+        String regNumber = askForRegNumber();
+        showUsers();
+        System.out.println();
+        String userId = askForUserId();
+        //book car
+        //success
+    }
+
+    private static void viewAllUsersBookedCars() {
+        showUsers();
+        System.out.println();
+        String userId = askForUserId();
+        //get booked cars by user
+    }
+
+    private static void viewAllBookings() {
+        Booking[] bookings = Booking.getBookings();
+        if(false) {
+            noBookingsAvailable();
+        } else {
+            for (Booking booking : bookings) {
+                System.out.println(booking);
+            }
         }
         System.out.println();
         showMenu();
     }
 
+    private static void viewAvailableCars() {
+        showAvailableCars();
+        System.out.println();
+        showMenu();
+    }
+
     private static void viewAvailableElectricCars() {
-        Car[] electricCars = Car.getElectricCars();
+        Car[] electricCars = Car.getAvailableElectricCars();
 
         for (Car electricCar : electricCars) {
             System.out.println(electricCar);
@@ -46,11 +102,7 @@ class CarBookingAppUtils {
     }
 
     private static void viewAllUsers() {
-        User[] users = User.getUsers();
-
-        for (User user : users) {
-            System.out.println(user);
-        }
+        showUsers();
         System.out.println();
         showMenu();
     }
