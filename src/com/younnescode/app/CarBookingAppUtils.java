@@ -74,7 +74,7 @@ class CarBookingAppUtils {
 
     private static void viewAllBookings() {
         Booking[] bookings = Booking.getBookings();
-        if(false) {
+        if(Arrays.stream(bookings).allMatch(Objects::isNull)) {
             noBookingsAvailable();
         } else {
             for (Booking booking : bookings) {
