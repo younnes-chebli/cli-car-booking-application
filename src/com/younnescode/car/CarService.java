@@ -54,7 +54,7 @@ public class CarService {
 
     private static String[] getAvailableCarsRegNumbers() {
         Car[] availableCars = getAvailableCars();
-        int availableCarsCapacity = getAvailableCars().length;
+        int availableCarsCapacity = availableCars.length;
         String[] availableCarsRegNumbers = new String[availableCarsCapacity];
         int nextAvailableIndex = 0;
 

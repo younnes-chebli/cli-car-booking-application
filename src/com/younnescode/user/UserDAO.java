@@ -11,7 +11,7 @@ public class UserDAO {
         };
     }
 
-    User[] getUsers() {
+    static User[] getUsers() {
         return users;
     }
 }

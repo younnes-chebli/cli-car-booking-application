@@ -26,7 +26,7 @@ class CarBookingAppUtils {
         showMenu();
     }
 
-    private static void noMatchingAvailableCar() {
+    private static void noMatching() {
         System.out.println("⛔ Not a valid option\n");
         System.out.println();
         bookCar();
@@ -78,12 +78,14 @@ class CarBookingAppUtils {
                 System.out.println();
                 String userId = askForUserId();
                 System.out.println();
-                if(true) {
+                if(User.match(userId)) {
                     //book car
                     //success
+                } else {
+                    noMatching();
                 }
             } else {
-                noMatchingAvailableCar();
+                noMatching();
             }
     }
 

@@ -16,8 +16,16 @@ public class User {
         this.name = name;
     }
 
+    public UUID getID() {
+        return ID;
+    }
+
     public static User[] getUsers() {
         return userService.getUsers();
+    }
+
+    public static boolean match(String userId) {
+        return UserService.match(userId);
     }
 
     @Override
