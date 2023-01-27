@@ -3,13 +3,13 @@ package com.younnescode.user;
 import java.util.UUID;
 
 public class User {
-    private UUID id;
+    private final UUID ID;
     private String name;
 
     private static final UserService userService = new UserService();
 
     {
-        this.id = UUID.randomUUID();
+        this.ID = UUID.randomUUID();
     }
 
     public User(String name) {;
@@ -23,7 +23,7 @@ public class User {
     @Override
     public String toString() {
         return "User{" +
-                "id=" + id +
+                "id=" + ID +
                 ", name='" + name + '\'' +
                 '}';
     }

@@ -12,25 +12,31 @@ class CarBookingAppUtils {
     static Scanner scan = new Scanner(System.in);
 
     private static void notValidOption() {
-        System.out.println("Not a valid option\n");
+        System.out.println("⛔ Not a valid option\n");
         showMenu();
     }
 
     private static void noBookingsAvailable() {
-        System.out.println("No Bookings Available\n");
+        System.out.println("⛔ No Bookings Available\n");
         showMenu();
     }
 
     private static void noCarsBooked(User user) {
-        System.out.println(user + " has no car Booked");
+        System.out.println("⛔ " + user + " has no car Booked");
         showMenu();
+    }
+
+    private static void noMatchingAvailableCar() {
+        System.out.println("⛔ Not a valid option\n");
+        System.out.println();
+        bookCar();
     }
 
     private static void showUsers() {
         User[] users = User.getUsers();
 
         for (User user : users) {
-            System.out.println(user);
+            System.out.println("\uD83D\uDE09 " + user);
         }
     }
 
@@ -38,18 +44,26 @@ class CarBookingAppUtils {
         Car[] availableCars = Car.getAvailableCars();
 
         for (Car availableCar : availableCars) {
-            System.out.println(availableCar);
+            System.out.println("\uD83D\uDE97 " + availableCar);
+        }
+    }
+
+    private static void showAvailableElectricCars() {
+        Car[] electricCars = Car.getAvailableElectricCars();
+
+        for (Car electricCar : electricCars) {
+            System.out.println("\uD83D\uDE97 " + electricCar);
         }
     }
 
     private static String askForUserId() {
-        System.out.print("Select User ID: ");
+        System.out.print("\uD83D\uDD0D Select User ID: ");
         String userId = scan.nextLine();
         return userId;
     }
 
     private static String askForRegNumber() {
-        System.out.print("Select Car Reg Number: ");
+        System.out.print("\uD83D\uDD0D Select Car REG NUMBER: ");
         String regNumber = scan.nextLine();
         return regNumber;
     }
@@ -58,11 +72,19 @@ class CarBookingAppUtils {
         showAvailableCars();
         System.out.println();
         String regNumber = askForRegNumber();
-        showUsers();
         System.out.println();
-        String userId = askForUserId();
-        //book car
-        //success
+            if(Car.match(regNumber)) {
+                showUsers();
+                System.out.println();
+                String userId = askForUserId();
+                System.out.println();
+                if(true) {
+                    //book car
+                    //success
+                }
+            } else {
+                noMatchingAvailableCar();
+            }
     }
 
     private static void viewAllUsersBookedCars() {
@@ -78,7 +100,7 @@ class CarBookingAppUtils {
             noBookingsAvailable();
         } else {
             for (Booking booking : bookings) {
-                System.out.println(booking);
+                System.out.println("\uD83D\uDD11 " + booking);
             }
         }
         System.out.println();
@@ -92,11 +114,7 @@ class CarBookingAppUtils {
     }
 
     private static void viewAvailableElectricCars() {
-        Car[] electricCars = Car.getAvailableElectricCars();
-
-        for (Car electricCar : electricCars) {
-            System.out.println(electricCar);
-        }
+        showAvailableElectricCars();
         System.out.println();
         showMenu();
     }
@@ -108,7 +126,8 @@ class CarBookingAppUtils {
     }
 
     private static void exit() {
-
+        System.out.println("\uD83D\uDC4B Bye Bye \uD83D\uDE04");
+        System.exit(0);
     }
 
     static void showMenu() {

@@ -7,7 +7,7 @@ import java.time.LocalDateTime;
 import java.util.UUID;
 
 public class Booking {
-    private UUID id;
+    private final UUID ID;
     private User user;
     private Car car;
     private LocalDateTime bookingTime;
@@ -16,7 +16,7 @@ public class Booking {
     private static final BookingService bookingService = new BookingService();
 
     {
-        this.id = UUID.randomUUID();
+        this.ID = UUID.randomUUID();
         this.bookingTime = LocalDateTime.now();
         this.isCanceled = false;
     }
@@ -33,7 +33,7 @@ public class Booking {
     @Override
     public String toString() {
         return "Booking{" +
-                "id=" + id +
+                "id=" + ID +
                 ", user=" + user +
                 ", car=" + car +
                 ", bookingTime=" + bookingTime +
