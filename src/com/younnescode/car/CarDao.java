@@ -15,17 +15,11 @@ public class CarDao {
         };
     }
 
-    static int getCarsCpt() {
+    int getCarsCpt() {
         return carsCpt;
     }
 
-    public static int getElectricCarsCpt() {
-        return electricCarsCpt;
-    }
-
-    static Car[] getAllCars() {
+    Car[] getAllCars() {
         return cars;
     }
-
-
 }

@@ -1,7 +1,7 @@
 package com.younnescode.booking;
 
 import com.younnescode.car.Car;
-import com.younnescode.car.CarDao;
+import com.younnescode.user.User;
 
 public class BookingDAO {
     private static final Booking[] bookings;
@@ -10,7 +10,11 @@ public class BookingDAO {
         bookings = new Booking[Car.getCarsCpt()];
     }
 
-    static Booking[] getBookings() {
+    Booking[] getBookings() {
         return bookings;
+    }
+
+    Booking addBooking(User user, Car car, int i) {
+        return bookings[i] = new Booking(user, car);
     }
 }

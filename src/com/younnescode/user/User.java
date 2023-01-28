@@ -25,7 +25,7 @@ public class User {
     }
 
     public static User getUserById(String userId) {
-        return UserService.getUserById(userId);
+        return userService.getUserById(userId);
     }
 
     @Override

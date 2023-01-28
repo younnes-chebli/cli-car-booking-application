@@ -5,20 +5,20 @@ import java.util.UUID;
 public class CarService {
     private static final CarDao carDAO = new CarDao();
 
-    static int getCarsCpt() {
-        return CarDao.getCarsCpt();
+    int getCarsCpt() {
+        return carDAO.getCarsCpt();
     }
 
-    private static boolean isAvailable(Car car) {
+    private boolean isAvailable(Car car) {
         return !car.isBooked();
     }
 
-    private static boolean isAvailableElectric(Car car) {
+    private boolean isAvailableElectric(Car car) {
         return !car.isBooked() && car.isElectric();
     }
 
-    private static int getAvailableCarsCpt() {
-        Car[] cars = CarDao.getAllCars();
+    private int getAvailableCarsCpt() {
+        Car[] cars = carDAO.getAllCars();
         int availableCarsCpt = 0;
 
         for (Car car : cars) {
@@ -30,9 +30,9 @@ public class CarService {
         return availableCarsCpt;
     }
 
-    static Car[] getAvailableCars() {
+    Car[] getAvailableCars() {
         int availableCarsCpt = getAvailableCarsCpt();
-        Car[] cars = CarDao.getAllCars();
+        Car[] cars = carDAO.getAllCars();
         Car[] availableCars = new Car[availableCarsCpt];
         int nextAvailableIndex = 0;
 
@@ -45,8 +45,8 @@ public class CarService {
         return availableCars;
     }
 
-    private static int getAvailableElectricCarsCpt() {
-        Car[] cars = CarDao.getAllCars();
+    private int getAvailableElectricCarsCpt() {
+        Car[] cars = carDAO.getAllCars();
         int availableElectricCarsCpt = 0;
 
         for (Car car : cars) {
@@ -58,9 +58,9 @@ public class CarService {
         return availableElectricCarsCpt;
     }
 
-    static Car[] getAvailableElectricCars() {
+    Car[] getAvailableElectricCars() {
         int availableElectricCarsCpt = getAvailableElectricCarsCpt();
-        Car[] cars = CarDao.getAllCars();
+        Car[] cars = carDAO.getAllCars();
         Car[] electricCars = new Car[availableElectricCarsCpt];
         var nextAvailableIndex = 0;
 
@@ -73,7 +73,7 @@ public class CarService {
         return electricCars;
     }
 
-    static Car getAvailableCarByRegNumber(String regNumber) {
+    Car getAvailableCarByRegNumber(String regNumber) {
         Car[] availableCars = Car.getAvailableCars();
         UUID ID = null;
 

@@ -5,12 +5,12 @@ import java.util.UUID;
 public class UserService {
     private static final UserDAO userDAO = new UserDAO();
 
-    static User[] getUsers() {
+    User[] getUsers() {
         return userDAO.getUsers();
     }
 
-    static User getUserById(String userId) {
-        User[] users = UserDAO.getUsers();
+    User getUserById(String userId) {
+        User[] users = userDAO.getUsers();
         UUID ID = null;
 
         try{

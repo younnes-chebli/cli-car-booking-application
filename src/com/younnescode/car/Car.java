@@ -24,7 +24,7 @@ public class Car {
     }
 
     public static int getCarsCpt() {
-        return CarService.getCarsCpt();
+        return carService.getCarsCpt();
     }
 
     public boolean isElectric() {
@@ -44,7 +44,7 @@ public class Car {
     }
 
     public static Car getAvailableCarByRegNumber(String regNumber) {
-        return CarService.getAvailableCarByRegNumber(regNumber);
+        return carService.getAvailableCarByRegNumber(regNumber);
     }
 
     public static Car[] getAvailableElectricCars() {

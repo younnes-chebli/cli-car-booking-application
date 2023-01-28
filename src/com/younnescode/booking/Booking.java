@@ -27,7 +27,11 @@ public class Booking {
     }
 
     public static Booking[] getBookings() {
-        return BookingService.getBookings();
+        return bookingService.getBookings();
+    }
+
+    public static Booking addBooking(User user, Car car) {
+        return bookingService.addBooking(user, car);
     }
 
     @Override
