@@ -17,27 +17,13 @@ public class CarService {
         return !car.isBooked() && car.isElectric();
     }
 
-    private int getAvailableCarsCpt() {
-        Car[] cars = carDAO.getAllCars();
-        int availableCarsCpt = 0;
-
-        for (Car car : cars) {
-            if(isAvailable(car)) {
-                ++availableCarsCpt;
-            }
-        }
-
-        return availableCarsCpt;
-    }
-
     Car[] getAvailableCars() {
-        int availableCarsCpt = getAvailableCarsCpt();
         Car[] cars = carDAO.getAllCars();
-        Car[] availableCars = new Car[availableCarsCpt];
+        Car[] availableCars = new Car[cars.length];
         int nextAvailableIndex = 0;
 
         for (Car car : cars) {
-            if (isAvailable(car) && nextAvailableIndex < availableCarsCpt) {
+            if (isAvailable(car) && nextAvailableIndex < cars.length) {
                 availableCars[nextAvailableIndex++] = car;
             }
         }
@@ -45,27 +31,13 @@ public class CarService {
         return availableCars;
     }
 
-    private int getAvailableElectricCarsCpt() {
-        Car[] cars = carDAO.getAllCars();
-        int availableElectricCarsCpt = 0;
-
-        for (Car car : cars) {
-            if(isAvailableElectric(car)) {
-                ++availableElectricCarsCpt;
-            }
-        }
-
-        return availableElectricCarsCpt;
-    }
-
     Car[] getAvailableElectricCars() {
-        int availableElectricCarsCpt = getAvailableElectricCarsCpt();
         Car[] cars = carDAO.getAllCars();
-        Car[] electricCars = new Car[availableElectricCarsCpt];
+        Car[] electricCars = new Car[cars.length];
         var nextAvailableIndex = 0;
 
         for (Car car : cars) {
-            if(isAvailableElectric(car) && nextAvailableIndex < availableElectricCarsCpt) {
+            if(isAvailableElectric(car) && nextAvailableIndex < cars.length) {
                 electricCars[nextAvailableIndex++] = car;
             }
         }

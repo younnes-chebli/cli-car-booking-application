@@ -11,6 +11,7 @@ public class BookingService {
     }
 
     Booking addBooking(User user, Car car) {
+        car.setBooked(true);
         Booking[] bookings = bookingDAO.getBookings();
 
         for (int i = 0; i < bookings.length; i++) {
@@ -20,5 +21,19 @@ public class BookingService {
         }
 
         return null;
+    }
+
+    Booking[] getBookingsByUser(User user) {
+        Booking[] bookings = bookingDAO.getBookings();
+        Booking[] bookingsByUser = new Booking[bookings.length];
+        int nextAvailableIndex = 0;
+
+        for (Booking booking : bookings) {
+            if (booking != null && booking.getUser().equals(user) && nextAvailableIndex < bookings.length) {
+                bookingsByUser[nextAvailableIndex++] = booking;
+            }
+        }
+
+        return bookingsByUser;
     }
 }

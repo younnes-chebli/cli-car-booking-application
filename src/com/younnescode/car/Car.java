@@ -35,6 +35,10 @@ public class Car {
         return isBooked;
     }
 
+    public void setBooked(boolean booked) {
+        isBooked = booked;
+    }
+
     public UUID getREG_NUMBER() {
         return REG_NUMBER;
     }

@@ -11,18 +11,37 @@ import java.util.Scanner;
 class CarBookingAppUtils {
     static Scanner scan = new Scanner(System.in);
 
+    private static boolean isEmpty(Object[] object) {
+        return Arrays.stream(object).allMatch(Objects::isNull);
+    }
+
     private static void notValidOption() {
         System.out.println("⛔ Not a valid option\n");
+        System.out.println();
+        showMenu();
+    }
+
+    private static void noAvailableCars() {
+        System.out.println("❌ No Available Cars\n");
+        System.out.println();
+        showMenu();
+    }
+
+    private static void noAvailableElectricCars() {
+        System.out.println("❌ No Available Electric Cars\n");
+        System.out.println();
         showMenu();
     }
 
     private static void noBookingsAvailable() {
-        System.out.println("⛔ No Bookings Available\n");
+        System.out.println("❌ No Bookings Available\n");
+        System.out.println();
         showMenu();
     }
 
-    private static void noCarsBooked(User user) {
-        System.out.println("⛔ " + user + " has no car Booked");
+    private static void noCarsBooked() {
+        System.out.println("❌ This user has no cars Booked");
+        System.out.println();
         showMenu();
     }
 
@@ -50,17 +69,39 @@ class CarBookingAppUtils {
     private static void showAvailableCars() {
         Car[] availableCars = Car.getAvailableCars();
 
-        for (Car availableCar : availableCars) {
-            System.out.println("\uD83D\uDE97 " + availableCar);
+        if(!isEmpty(availableCars)) {
+            for (Car availableCar : availableCars) {
+                if(availableCar != null) {
+                    System.out.println("\uD83D\uDE97 " + availableCar);
+                }
+            }
+        } else {
+            noAvailableCars();
         }
     }
 
     private static void showAvailableElectricCars() {
-        Car[] electricCars = Car.getAvailableElectricCars();
+        Car[] availableElectricCars = Car.getAvailableElectricCars();
 
-        for (Car electricCar : electricCars) {
-            System.out.println("\uD83D\uDE97 " + electricCar);
+        if(!isEmpty(availableElectricCars)) {
+            for (Car availableElectricCar : availableElectricCars) {
+                if(availableElectricCar != null) {
+                    System.out.println("\uD83D\uDE97 " + availableElectricCar);
+                }
+            }
+        } else {
+            noAvailableElectricCars();
         }
+    }
+
+    private static void showBookings(Booking[] bookings) {
+        for (Booking booking : bookings) {
+            if(booking != null) {
+                System.out.println("\uD83D\uDD11 " + booking);
+            }
+        }
+        System.out.println();
+        showMenu();
     }
 
     private static String askForUserId() {
@@ -102,19 +143,25 @@ class CarBookingAppUtils {
         showUsers();
         System.out.println();
         String userId = askForUserId();
-        //get booked cars by user
+        if(User.getUserById(userId) != null) {
+            User user = User.getUserById(userId);
+            Booking[] bookingsByUser = Booking.getBookingsByUser(user);
+            if(!isEmpty(bookingsByUser)) {
+                showBookings(bookingsByUser);
+            } else {
+                noCarsBooked();
+            }
+        } else {
+            noMatching();
+        }
     }
 
     private static void viewAllBookings() {
         Booking[] bookings = Booking.getBookings();
-        if(Arrays.stream(bookings).allMatch(Objects::isNull)) {
+        if(isEmpty(bookings)) {
             noBookingsAvailable();
         } else {
-            for (Booking booking : bookings) {
-                if(booking != null) {
-                    System.out.println("\uD83D\uDD11 " + booking);
-                }
-            }
+            showBookings(bookings);
         }
         System.out.println();
         showMenu();
@@ -146,13 +193,13 @@ class CarBookingAppUtils {
     static void showMenu() {
         System.out.println (
                 "\uD83E\uDD35 \n" +
-                "1. Book Car\n" +
-                "2. View All Users Booked Cars\n" +
-                "3. View All Bookings\n" +
-                "4. View Available Cars\n" +
-                "5. View Available Electric Cars\n" +
-                "6. View All Users\n" +
-                "7. Exit\n"
+                "1️⃣ Book Car\n" +
+                "2️⃣ View All Users Booked Cars\n" +
+                "3️⃣ View All Bookings\n" +
+                "4️⃣ View Available Cars\n" +
+                "5️⃣ View Available Electric Cars\n" +
+                "6️⃣ View All Users\n" +
+                "7️⃣ Exit\n"
         );
         String option = scan.nextLine();
         switch (option) {

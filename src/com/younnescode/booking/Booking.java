@@ -26,8 +26,16 @@ public class Booking {
         this.car = car;
     }
 
+    public User getUser() {
+        return this.user;
+    }
+
     public static Booking[] getBookings() {
         return bookingService.getBookings();
+    }
+
+    public static Booking[] getBookingsByUser(User user) {
+        return bookingService.getBookingsByUser(user);
     }
 
     public static Booking addBooking(User user, Car car) {
