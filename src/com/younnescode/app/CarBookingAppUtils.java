@@ -32,6 +32,12 @@ class CarBookingAppUtils {
         bookCar();
     }
 
+    private static void success() {
+        System.out.println("\uD83D\uDD11 You Successfully Booked A Car! \uD83C\uDF89 \uD83C\uDF89 \uD83C\uDF89\n");
+        System.out.println();
+        showMenu();
+    }
+
     private static void showUsers() {
         User[] users = User.getUsers();
 
@@ -73,14 +79,14 @@ class CarBookingAppUtils {
         System.out.println();
         String regNumber = askForRegNumber();
         System.out.println();
-            if(Car.match(regNumber)) {
+            if(Car.getAvailableCarByRegNumber(regNumber) != null) {
                 showUsers();
                 System.out.println();
                 String userId = askForUserId();
                 System.out.println();
-                if(User.match(userId)) {
+                if(User.getUserById(userId) != null) {
                     //book car
-                    //success
+                    success();
                 } else {
                     noMatching();
                 }
@@ -134,6 +140,7 @@ class CarBookingAppUtils {
 
     static void showMenu() {
         System.out.println (
+                "\uD83E\uDD35 \n" +
                 "1. Book Car\n" +
                 "2. View All Users Booked Cars\n" +
                 "3. View All Bookings\n" +

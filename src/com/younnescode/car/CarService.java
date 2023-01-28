@@ -1,6 +1,10 @@
 package com.younnescode.car;
 
+import com.younnescode.user.User;
+import com.younnescode.user.UserDAO;
+
 import java.util.Arrays;
+import java.util.UUID;
 
 public class CarService {
     private static final CarDao carDAO = new CarDao();
@@ -52,23 +56,22 @@ public class CarService {
         return CarDao.getCarsCpt();
     }
 
-    private static String[] getAvailableCarsRegNumbers() {
-        Car[] availableCars = getAvailableCars();
-        int availableCarsCapacity = availableCars.length;
-        String[] availableCarsRegNumbers = new String[availableCarsCapacity];
-        int nextAvailableIndex = 0;
+    static Car getAvailableCarByRegNumber(String regNumber) {
+        Car[] availableCars = Car.getAvailableCars();
+        UUID ID = null;
+
+        try{
+            ID = UUID.fromString(regNumber);
+        } catch (IllegalArgumentException e) {
+            e.getMessage();
+        }
 
         for (Car availableCar : availableCars) {
-            if(nextAvailableIndex < availableCarsCapacity) {
-                availableCarsRegNumbers[nextAvailableIndex++] = availableCar.getREG_NUMBER().toString();
+            if(availableCar.getREG_NUMBER().equals(ID)) {
+                return availableCar;
             }
         }
 
-        return availableCarsRegNumbers;
-    }
-
-    static boolean match(String regNumber) {
-        String[] availableCarsRegNumbers = getAvailableCarsRegNumbers();
-        return Arrays.asList(availableCarsRegNumbers).contains(regNumber);
+        return null;
     }
 }

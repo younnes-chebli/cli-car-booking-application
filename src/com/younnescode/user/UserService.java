@@ -1,8 +1,6 @@
 package com.younnescode.user;
 
-import com.younnescode.car.Car;
-
-import java.util.Arrays;
+import java.util.UUID;
 
 public class UserService {
     private static final UserDAO userDAO = new UserDAO();
@@ -11,23 +9,22 @@ public class UserService {
         return userDAO.getUsers();
     }
 
-    private static String[] getAllIds() {
+    static User getUserById(String userId) {
         User[] users = UserDAO.getUsers();
-        int usersCapacity = users.length;
-        String[] userIds = new String[usersCapacity];
-        int nextAvailableIndex = 0;
+        UUID ID = null;
+
+        try{
+            ID = UUID.fromString(userId);
+        } catch (IllegalArgumentException e) {
+            e.getMessage();
+        }
 
         for (User user : users) {
-            if(nextAvailableIndex < usersCapacity) {
-                userIds[nextAvailableIndex++] = user.getID().toString();
+            if(user.getID().equals(ID)) {
+                return user;
             }
         }
 
-        return userIds;
-    }
-
-    static boolean match(String userId) {
-        String[] userIds = getAllIds();
-        return Arrays.asList(userIds).contains(userId);
+        return null;
     }
 }

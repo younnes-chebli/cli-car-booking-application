@@ -24,8 +24,8 @@ public class User {
         return userService.getUsers();
     }
 
-    public static boolean match(String userId) {
-        return UserService.match(userId);
+    public static User getUserById(String userId) {
+        return UserService.getUserById(userId);
     }
 
     @Override

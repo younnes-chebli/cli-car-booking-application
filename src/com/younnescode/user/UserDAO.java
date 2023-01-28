@@ -1,5 +1,7 @@
 package com.younnescode.user;
 
+import java.util.UUID;
+
 public class UserDAO {
     private static final User[] users;
 

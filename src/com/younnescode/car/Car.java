@@ -39,20 +39,16 @@ public class Car {
         return REG_NUMBER;
     }
 
-    public void setElectric(boolean electric) {
-        isElectric = electric;
-    }
-
     public static Car[] getAvailableCars() {
         return carService.getAvailableCars();
     }
 
-    public static Car[] getAvailableElectricCars() {
-        return carService.getAvailableElectricCars();
+    public static Car getAvailableCarByRegNumber(String regNumber) {
+        return CarService.getAvailableCarByRegNumber(regNumber);
     }
 
-    public static boolean match(String regNumber) {
-        return CarService.match(regNumber);
+    public static Car[] getAvailableElectricCars() {
+        return carService.getAvailableElectricCars();
     }
 
     @Override
