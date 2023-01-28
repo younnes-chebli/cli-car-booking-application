@@ -1,20 +1,28 @@
 package com.younnescode.car;
 
-import com.younnescode.user.User;
-import com.younnescode.user.UserDAO;
-
-import java.util.Arrays;
 import java.util.UUID;
 
 public class CarService {
     private static final CarDao carDAO = new CarDao();
+
+    static int getCarsCpt() {
+        return CarDao.getCarsCpt();
+    }
+
+    private static boolean isAvailable(Car car) {
+        return !car.isBooked();
+    }
+
+    private static boolean isAvailableElectric(Car car) {
+        return !car.isBooked() && car.isElectric();
+    }
 
     private static int getAvailableCarsCpt() {
         Car[] cars = CarDao.getAllCars();
         int availableCarsCpt = 0;
 
         for (Car car : cars) {
-            if(!car.isBooked()) {
+            if(isAvailable(car)) {
                 ++availableCarsCpt;
             }
         }
@@ -29,7 +37,7 @@ public class CarService {
         int nextAvailableIndex = 0;
 
         for (Car car : cars) {
-            if (!car.isBooked() && nextAvailableIndex < availableCarsCpt) {
+            if (isAvailable(car) && nextAvailableIndex < availableCarsCpt) {
                 availableCars[nextAvailableIndex++] = car;
             }
         }
@@ -37,23 +45,32 @@ public class CarService {
         return availableCars;
     }
 
-    static Car[] getAvailableElectricCars() {
+    private static int getAvailableElectricCarsCpt() {
         Car[] cars = CarDao.getAllCars();
-        int electricCarsCpt = CarDao.getElectricCarsCpt();
-        Car[] electricCars = new Car[electricCarsCpt];
+        int availableElectricCarsCpt = 0;
+
+        for (Car car : cars) {
+            if(isAvailableElectric(car)) {
+                ++availableElectricCarsCpt;
+            }
+        }
+
+        return availableElectricCarsCpt;
+    }
+
+    static Car[] getAvailableElectricCars() {
+        int availableElectricCarsCpt = getAvailableElectricCarsCpt();
+        Car[] cars = CarDao.getAllCars();
+        Car[] electricCars = new Car[availableElectricCarsCpt];
         var nextAvailableIndex = 0;
 
         for (Car car : cars) {
-            if(car.isElectric() && !car.isBooked() && nextAvailableIndex < electricCarsCpt) {
+            if(isAvailableElectric(car) && nextAvailableIndex < availableElectricCarsCpt) {
                 electricCars[nextAvailableIndex++] = car;
             }
         }
 
         return electricCars;
-    }
-
-    static int getCarsCpt() {
-        return CarDao.getCarsCpt();
     }
 
     static Car getAvailableCarByRegNumber(String regNumber) {
