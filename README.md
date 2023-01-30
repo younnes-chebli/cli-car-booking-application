@@ -11,13 +11,67 @@ When booking a new car should the application ask for:
 * We use packages to organize our code
 * We use the right naming conventions for classes, methods and packages.
 
+![image](https://user-images.githubusercontent.com/106768273/215433499-3329b899-a3b0-4daa-ab2f-53bb5654a1bc.png)
+
+Incorrect Input
+
+![image](https://user-images.githubusercontent.com/106768273/215435479-c42eee91-7b83-484b-bd39-e669e2dcace3.png)
+
 ## Features to be implemented
+
 * Book Car
+
+Incorrect Input
+
+![image](https://user-images.githubusercontent.com/106768273/215435083-9797dfa1-fe24-4f3c-94bf-4de89ec3d4d5.png)
+
+Correct Inputs
+
+![image](https://user-images.githubusercontent.com/106768273/215435336-67fc25f0-ba93-4d8b-b7a3-0d1126087282.png)
+
 * View All User Booked Cars
+
+Incorrect Input
+
+![image](https://user-images.githubusercontent.com/106768273/215438207-ab57e957-bffc-4fdd-8f95-ffcba3efaee1.png)
+
+Correct Input
+
+![image](https://user-images.githubusercontent.com/106768273/215438284-76e54aa6-3401-46df-86dc-efc0997a5cbe.png)
+
+After Booking
+
+![image](https://user-images.githubusercontent.com/106768273/215436603-e1140176-910c-43bf-8975-a686282a8959.png)
+
 * View All Bookings
+
+Correct Input
+
+![image](https://user-images.githubusercontent.com/106768273/215434430-dd543944-6f5a-49d8-8802-38d33ea6516d.png)
+
+After Booking
+
+![image](https://user-images.githubusercontent.com/106768273/215435715-529be328-a4b1-4874-94f8-20b55744ceaa.png)
+
 * View Available Cars
+
+![image](https://user-images.githubusercontent.com/106768273/215434293-9bc49f03-8917-42a1-8af6-cd09cded0c18.png)
+
+After Booking
+
+![image](https://user-images.githubusercontent.com/106768273/215435869-7c6f48f3-8041-40b2-a1cc-aef24351306d.png)
+
 * View Available Electric Cars
+
+![image](https://user-images.githubusercontent.com/106768273/215434199-8a6ff90a-3fe6-4813-9e5e-e0887df99806.png)
+
+After Booking
+
+![image](https://user-images.githubusercontent.com/106768273/215435957-545cd380-3b86-47f6-8cd7-603d917ab132.png)
+
 * View All Users
+
+![image](https://user-images.githubusercontent.com/106768273/215434123-aa12b1a3-5240-4f59-9a91-a4b005fe5bdc.png)
 
 ### Important
 * We will use Arrays to hold any data. We will not use Lists at the first point. We will later.
