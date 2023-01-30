@@ -45,10 +45,16 @@ class CarBookingAppUtils {
         showMenu();
     }
 
-    private static void noMatching() {
+    private static void noMatchingBook() {
         System.out.println("⛔ Not a valid option\n");
         System.out.println();
         bookCar();
+    }
+
+    private static void noMatchingViewBookings() {
+        System.out.println("⛔ Not a valid option\n");
+        System.out.println();
+        viewAllUsersBookedCars();
     }
 
     private static void success(Booking booking) {
@@ -132,10 +138,10 @@ class CarBookingAppUtils {
                     Booking booking = Booking.addBooking(user, car);
                     success(booking);
                 } else {
-                    noMatching();
+                    noMatchingBook();
                 }
             } else {
-                noMatching();
+                noMatchingBook();
             }
     }
 
@@ -152,7 +158,7 @@ class CarBookingAppUtils {
                 noCarsBooked();
             }
         } else {
-            noMatching();
+            noMatchingViewBookings();
         }
     }
 
