@@ -56,7 +56,7 @@ public class CarService {
         }
 
         for (Car availableCar : availableCars) {
-            if(availableCar.getREG_NUMBER().equals(ID)) {
+            if(availableCar != null && availableCar.getREG_NUMBER().equals(ID)) {
                 return availableCar;
             }
         }

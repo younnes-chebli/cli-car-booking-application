@@ -20,7 +20,7 @@ public class UserService {
         }
 
         for (User user : users) {
-            if(user.getID().equals(ID)) {
+            if(user != null && user.getID().equals(ID)) {
                 return user;
             }
         }
