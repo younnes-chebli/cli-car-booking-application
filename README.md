@@ -67,7 +67,7 @@ After Booking
 
 After Booking
 
-![image](https://user-images.githubusercontent.com/106768273/215435957-545cd380-3b86-47f6-8cd7-603d917ab132.png)
+![image](https://user-images.githubusercontent.com/106768273/215439233-f6f3d693-bcc2-4cb6-8092-cdeb2d20022c.png)
 
 * View All Users
 
