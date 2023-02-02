@@ -68,7 +68,9 @@ class CarBookingAppUtils {
         User[] users = User.getUsers();
 
         for (User user : users) {
-            System.out.println("\uD83D\uDE09 " + user);
+            if(user != null) {
+                System.out.println("\uD83D\uDE09 " + user);
+            }
         }
     }
 

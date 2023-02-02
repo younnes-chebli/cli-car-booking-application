@@ -2,10 +2,8 @@ package com.younnescode.car;
 
 import java.math.BigDecimal;
 
-public class CarDao {
+public class CarArrayDataAccessService {
     private static final Car[] cars;
-    private static int electricCarsCpt = 1;
-    private static int carsCpt = 3;
 
     static {
         cars = new Car[]{
@@ -15,11 +13,7 @@ public class CarDao {
         };
     }
 
-    int getCarsCpt() {
-        return carsCpt;
-    }
-
-    Car[] getAllCars() {
+    Car[] getCars() {
         return cars;
     }
 }

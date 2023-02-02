@@ -1,0 +1,4 @@
+regNumber, rentalPricePerDay, brand, isElectric, isBooked
+dfcf734e-0b17-437f-be4b-7732bf5162a7, 89.00, TESLA, true, false
+3db2e915-b252-4142-b306-c8b38b6627a7, 50.00, AUDI, false, false
+8372ddb0-c8f0-42bf-b62a-95c3f2f28bb8, 77.00, MERCEDES, false, false

@@ -12,15 +12,20 @@ public class Car {
 
     private static final CarService carService = new CarService();
 
-    {
-        this.REG_NUMBER = UUID.randomUUID();
-    }
-
     public Car(BigDecimal rentalPricePerDay, Brand brand, boolean isElectric) {
+        this.REG_NUMBER = UUID.randomUUID();
         this.rentalPricePerDay = rentalPricePerDay;
         this.brand = brand;
         this.isElectric = isElectric;
         this.isBooked = false;
+    }
+
+    public Car(UUID REG_NUMBER, BigDecimal rentalPricePerDay, Brand brand, boolean isElectric, boolean isBooked) {
+        this.REG_NUMBER = REG_NUMBER;
+        this.rentalPricePerDay = rentalPricePerDay;
+        this.brand = brand;
+        this.isElectric = isElectric;
+        this.isBooked = isBooked;
     }
 
     public static int getCarsCpt() {

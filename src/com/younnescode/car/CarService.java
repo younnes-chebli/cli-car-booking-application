@@ -3,10 +3,20 @@ package com.younnescode.car;
 import java.util.UUID;
 
 public class CarService {
-    private static final CarDao carDAO = new CarDao();
+    private static final CarFileDataAccessService carFileDataAccessService = new CarFileDataAccessService();
 
     int getCarsCpt() {
-        return carDAO.getCarsCpt();
+        int carsCpt = 0;
+
+        Car[] cars = carFileDataAccessService.getCars();
+
+        for (Car car : cars) {
+            if (car != null) {
+                carsCpt++;
+            }
+        }
+
+        return carsCpt;
     }
 
     private boolean isAvailable(Car car) {
@@ -18,12 +28,12 @@ public class CarService {
     }
 
     Car[] getAvailableCars() {
-        Car[] cars = carDAO.getAllCars();
+        Car[] cars = carFileDataAccessService.getCars();
         Car[] availableCars = new Car[cars.length];
         int nextAvailableIndex = 0;
 
         for (Car car : cars) {
-            if (isAvailable(car) && nextAvailableIndex < cars.length) {
+            if (car != null && isAvailable(car) && nextAvailableIndex < cars.length) {
                 availableCars[nextAvailableIndex++] = car;
             }
         }
@@ -32,12 +42,12 @@ public class CarService {
     }
 
     Car[] getAvailableElectricCars() {
-        Car[] cars = carDAO.getAllCars();
+        Car[] cars = carFileDataAccessService.getCars();
         Car[] electricCars = new Car[cars.length];
         var nextAvailableIndex = 0;
 
         for (Car car : cars) {
-            if(isAvailableElectric(car) && nextAvailableIndex < cars.length) {
+            if(car != null && isAvailableElectric(car) && nextAvailableIndex < cars.length) {
                 electricCars[nextAvailableIndex++] = car;
             }
         }
