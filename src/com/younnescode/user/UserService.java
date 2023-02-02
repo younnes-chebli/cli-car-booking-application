@@ -3,14 +3,14 @@ package com.younnescode.user;
 import java.util.UUID;
 
 public class UserService {
-    private static final UserDAO userDAO = new UserDAO();
+    private static final UserFileDataAccessService userFileDataAccessService = new UserFileDataAccessService();
 
     User[] getUsers() {
-        return userDAO.getUsers();
+        return userFileDataAccessService.getUsers();
     }
 
     User getUserById(String userId) {
-        User[] users = userDAO.getUsers();
+        User[] users = userFileDataAccessService.getUsers();
         UUID ID = null;
 
         try{

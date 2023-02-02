@@ -8,12 +8,14 @@ public class User {
 
     private static final UserService userService = new UserService();
 
-    {
-        this.ID = UUID.randomUUID();
+    public User(UUID uuid, String name) {;
+        this.name = name;
+        this.ID = uuid;
     }
 
     public User(String name) {;
         this.name = name;
+        this.ID = UUID.randomUUID();
     }
 
     public UUID getID() {
