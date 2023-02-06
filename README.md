@@ -1,4 +1,11 @@
 # Car Booking Application
+
+## Interfaces (v2)
+
+We will change our implementation such that we use interfaces and get the data from files.
+
+## Initial Implementation (v1)
+
 As an admin for a car company I would like to have an application to book cars and view users.
 
 When booking a new car should the application ask for:

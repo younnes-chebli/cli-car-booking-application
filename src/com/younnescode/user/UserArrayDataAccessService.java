@@ -1,6 +1,6 @@
 package com.younnescode.user;
 
-public class UserArrayDataAccessService {
+public class UserArrayDataAccessService implements UserDAO {
     private static final User[] users;
 
     static {
@@ -11,7 +11,8 @@ public class UserArrayDataAccessService {
         };
     }
 
-    User[] getUsers() {
+    @Override
+    public User[] getUsers() {
         return users;
     }
 }

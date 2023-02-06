@@ -2,7 +2,7 @@ package com.younnescode.car;
 
 import java.math.BigDecimal;
 
-public class CarArrayDataAccessService {
+public class CarArrayDataAccessService implements CarDAO {
     private static final Car[] cars;
 
     static {
@@ -13,7 +13,8 @@ public class CarArrayDataAccessService {
         };
     }
 
-    Car[] getCars() {
+    @Override
+    public Car[] getCars() {
         return cars;
     }
 }
