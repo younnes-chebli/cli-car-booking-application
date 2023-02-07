@@ -3,6 +3,8 @@ package com.younnescode.booking;
 import com.younnescode.car.Car;
 import com.younnescode.user.User;
 
+import java.awt.print.Book;
+
 public class BookingService {
     private static final BookingFileDataAccessService bookingFileDataAccessService = new BookingFileDataAccessService();
 
@@ -12,15 +14,9 @@ public class BookingService {
 
     Booking addBooking(User user, Car car) {
         car.setBooked(true);
-        Booking[] bookings = bookingFileDataAccessService.getBookings();
+        car.update();
 
-        for (int i = 0; i < bookings.length; i++) {
-            if(bookings[i] == null) {
-                return bookingFileDataAccessService.addBooking(user, car, i);
-            }
-        }
-
-        return null;
+        return bookingFileDataAccessService.addBooking(user, car);
     }
 
     Booking[] getBookingsByUser(User user) {
@@ -29,7 +25,7 @@ public class BookingService {
         int nextAvailableIndex = 0;
 
         for (Booking booking : bookings) {
-            if (booking != null && booking.getUser().equals(user) && nextAvailableIndex < bookings.length) {
+            if (booking != null && booking.getUser().equals(user)) {
                 bookingsByUser[nextAvailableIndex++] = booking;
             }
         }

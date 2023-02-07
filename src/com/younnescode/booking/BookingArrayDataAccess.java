@@ -19,4 +19,10 @@ public class BookingArrayDataAccess implements BookingDAO {
     public Booking addBooking(User user, Car car, int i) {
         return bookings[i] = new Booking(user, car);
     }
+
+    //in a file
+    @Override
+    public Booking addBooking(User user, Car car) {
+        return null;
+    }
 }

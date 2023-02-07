@@ -33,7 +33,7 @@ public class CarService {
         int nextAvailableIndex = 0;
 
         for (Car car : cars) {
-            if (car != null && isAvailable(car) && nextAvailableIndex < cars.length) {
+            if (car != null && isAvailable(car)) {
                 availableCars[nextAvailableIndex++] = car;
             }
         }
@@ -47,7 +47,7 @@ public class CarService {
         var nextAvailableIndex = 0;
 
         for (Car car : cars) {
-            if(car != null && isAvailableElectric(car) && nextAvailableIndex < cars.length) {
+            if(car != null && isAvailableElectric(car)) {
                 electricCars[nextAvailableIndex++] = car;
             }
         }
@@ -72,5 +72,9 @@ public class CarService {
         }
 
         return null;
+    }
+
+    void update(Car updatedCar) {
+        carFileDataAccessService.update(updatedCar);
     }
 }

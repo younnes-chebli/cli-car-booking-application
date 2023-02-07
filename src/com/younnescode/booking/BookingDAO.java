@@ -4,7 +4,8 @@ import com.younnescode.car.Car;
 import com.younnescode.user.User;
 
 public interface BookingDAO {
-    public Booking[] getBookings();
+    Booking[] getBookings();
 
-    public Booking addBooking(User user, Car car, int i);
+    Booking addBooking(User user, Car car, int i);
+    Booking addBooking(User user, Car car);
 }

@@ -28,6 +28,14 @@ public class Car {
         this.isBooked = isBooked;
     }
 
+    public BigDecimal getRentalPricePerDay() {
+        return rentalPricePerDay;
+    }
+
+    public Brand getBrand() {
+        return brand;
+    }
+
     public static int getCarsCpt() {
         return carService.getCarsCpt();
     }
@@ -60,13 +68,18 @@ public class Car {
         return carService.getAvailableElectricCars();
     }
 
+    public void update() {
+        carService.update(this);
+    }
+
     @Override
     public String toString() {
         return "Car{" +
-                "regNumber=" + REG_NUMBER +
+                "REG_NUMBER=" + REG_NUMBER +
                 ", rentalPricePerDay=" + rentalPricePerDay +
                 ", brand=" + brand +
                 ", isElectric=" + isElectric +
+                ", isBooked=" + isBooked +
                 '}';
     }
 }

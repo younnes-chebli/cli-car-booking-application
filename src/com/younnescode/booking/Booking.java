@@ -31,6 +31,22 @@ public class Booking {
         this.isCanceled = false;
     }
 
+    public UUID getID() {
+        return ID;
+    }
+
+    public Car getCar() {
+        return car;
+    }
+
+    public LocalDateTime getBookingTime() {
+        return bookingTime;
+    }
+
+    public boolean isCanceled() {
+        return isCanceled;
+    }
+
     public User getUser() {
         return this.user;
     }

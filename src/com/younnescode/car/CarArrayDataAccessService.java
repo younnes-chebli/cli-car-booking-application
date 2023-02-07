@@ -17,4 +17,9 @@ public class CarArrayDataAccessService implements CarDAO {
     public Car[] getCars() {
         return cars;
     }
+
+    @Override
+    public void update(Car car) {
+
+    }
 }

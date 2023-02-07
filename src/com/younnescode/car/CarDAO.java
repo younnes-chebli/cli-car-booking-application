@@ -1,5 +1,7 @@
 package com.younnescode.car;
 
 public interface CarDAO {
-    public Car[] getCars();
+    Car[] getCars();
+
+    void update(Car car);
 }

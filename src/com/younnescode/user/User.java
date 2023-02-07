@@ -22,6 +22,10 @@ public class User {
         return ID;
     }
 
+    public String getName() {
+        return name;
+    }
+
     public static User[] getUsers() {
         return userService.getUsers();
     }

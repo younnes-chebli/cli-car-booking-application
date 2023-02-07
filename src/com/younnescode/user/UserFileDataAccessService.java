@@ -17,7 +17,7 @@ public class UserFileDataAccessService implements UserDAO {
             Scanner scanner = new Scanner(usersFile);
 
             scanner.nextLine();
-            while(scanner.hasNext() && nextAvailableIndex < users.length) {
+            while(scanner.hasNext()) {
                 String fileLine = scanner.nextLine();
                 String[] userFromFile = fileLine.split(",");
                 int nextFileIndex = 0;
@@ -28,7 +28,7 @@ public class UserFileDataAccessService implements UserDAO {
                             userFromFile[nextFileIndex++].trim()
                     );
                 } catch(IllegalArgumentException e) {
-                    e.getMessage();
+                    throw new RuntimeException(e);
                 }
             }
         } catch (FileNotFoundException e) {

@@ -1,7 +1,6 @@
 package com.younnescode.car;
 
-import java.io.File;
-import java.io.FileNotFoundException;
+import java.io.*;
 import java.math.BigDecimal;
 import java.util.Scanner;
 import java.util.UUID;
@@ -18,7 +17,7 @@ public class CarFileDataAccessService implements CarDAO {
             Scanner scanner = new Scanner(carsFile);
 
             scanner.nextLine();
-            while(scanner.hasNext() && nextAvailableIndex < cars.length) {
+            while(scanner.hasNext()) {
                 String fileLine = scanner.nextLine();
                 String[] carFromFile = fileLine.split(",");
                 int nextLineIndex = 0;
@@ -32,7 +31,7 @@ public class CarFileDataAccessService implements CarDAO {
                             Boolean.parseBoolean(carFromFile[nextLineIndex++].trim())
                     );
                 } catch(IllegalArgumentException e) {
-                    e.getMessage();
+                    throw new RuntimeException(e);
                 }
             }
         } catch (FileNotFoundException e) {
@@ -40,5 +39,38 @@ public class CarFileDataAccessService implements CarDAO {
         }
 
         return cars;
+    }
+
+    @Override
+    public void update(Car updatedCar) {
+        Car[] cars = getCars();
+        Car[] updatedCars = new Car[cars.length];
+
+        for(int i = 0; i < cars.length; i++) {
+            if(cars[i].getREG_NUMBER().equals(updatedCar.getREG_NUMBER())) {
+                updatedCars[i] = updatedCar;
+            } else {
+                updatedCars[i] = cars[i];
+            }
+        }
+
+        try (
+                FileWriter fileWriter = new FileWriter(carsFile);
+                PrintWriter printWriter = new PrintWriter(fileWriter);
+        ) {
+            printWriter.println("regNumber, rentalPricePerDay, brand, isElectric, isBooked");
+            for (Car car : updatedCars) {
+                printWriter.print(
+                        car.getREG_NUMBER()+ ", " +
+                        car.getRentalPricePerDay() + ", " +
+                        car.getBrand() + ", " +
+                        car.isElectric() + ", " +
+                        car.isBooked()
+                );
+                printWriter.println();
+            }
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 }
