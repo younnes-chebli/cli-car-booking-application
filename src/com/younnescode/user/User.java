@@ -1,5 +1,6 @@
 package com.younnescode.user;
 
+import java.util.Objects;
 import java.util.UUID;
 
 public class User {
@@ -33,6 +34,19 @@ public class User {
     public static User getUserById(String userId) {
         return userService.getUserById(userId);
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        User user = (User) o;
+        return Objects.equals(ID, user.ID) && Objects.equals(name, user.name);
+    }
+
+//    @Override
+//    public int hashCode() {
+//        return Objects.hash(ID, name);
+//    }
 
     @Override
     public String toString() {
