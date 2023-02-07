@@ -29,7 +29,8 @@ public class CarFileDataAccessService implements CarDAO {
                             new BigDecimal(carFromFile[nextLineIndex++].trim()).setScale(2, BigDecimal.ROUND_HALF_EVEN),
                             Brand.valueOf(carFromFile[nextLineIndex++].trim()),
                             Boolean.parseBoolean(carFromFile[nextLineIndex++].trim()),
-                            Boolean.parseBoolean(carFromFile[nextLineIndex++].trim()));
+                            Boolean.parseBoolean(carFromFile[nextLineIndex++].trim())
+                    );
                 } catch(IllegalArgumentException e) {
                     e.getMessage();
                 }

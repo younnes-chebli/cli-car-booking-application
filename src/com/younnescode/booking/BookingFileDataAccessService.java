@@ -1,10 +1,13 @@
 package com.younnescode.booking;
 
+import com.younnescode.car.Brand;
 import com.younnescode.car.Car;
 import com.younnescode.user.User;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.math.BigDecimal;
+import java.time.LocalDateTime;
 import java.util.Scanner;
 import java.util.UUID;
 
@@ -42,12 +45,25 @@ public class BookingFileDataAccessService implements BookingDAO {
                 scanner.nextLine();
                 while(scanner.hasNext() && nextAvailableIndex < bookings.length) {
                     String fileLine = scanner.nextLine();
-                    String[] carFromFile = fileLine.split(",");
+                    String[] bookingFromFile = fileLine.split(",");
                     int nextLineIndex = 0;
 
                     try {
                         bookings[nextAvailableIndex++] = new Booking(
-
+                            UUID.fromString(bookingFromFile[nextLineIndex++].trim()),
+                            new User(
+                                    UUID.fromString(bookingFromFile[nextLineIndex++].trim()),
+                                    bookingFromFile[nextLineIndex++].trim()
+                            ),
+                            new Car(
+                                    UUID.fromString(bookingFromFile[nextLineIndex++].trim()),
+                                    new BigDecimal(bookingFromFile[nextLineIndex++].trim()).setScale(2, BigDecimal.ROUND_HALF_EVEN),
+                                    Brand.valueOf(bookingFromFile[nextLineIndex++].trim()),
+                                    Boolean.parseBoolean(bookingFromFile[nextLineIndex++].trim()),
+                                    Boolean.parseBoolean(bookingFromFile[nextLineIndex++].trim())
+                            ),
+                            LocalDateTime.parse(bookingFromFile[nextLineIndex++].trim()),
+                            Boolean.parseBoolean(bookingFromFile[nextLineIndex++].trim())
                         );
                     } catch(IllegalArgumentException e) {
                         e.getMessage();

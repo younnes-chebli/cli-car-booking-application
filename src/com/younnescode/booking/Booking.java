@@ -15,15 +15,20 @@ public class Booking {
 
     private static final BookingService bookingService = new BookingService();
 
-    {
-        this.ID = UUID.randomUUID();
-        this.bookingTime = LocalDateTime.now();
-        this.isCanceled = false;
+    public Booking(UUID ID, User user, Car car, LocalDateTime bookingTime, boolean isCanceled) {
+        this.ID = ID;
+        this.user = user;
+        this.car = car;
+        this.bookingTime = bookingTime;
+        this.isCanceled = isCanceled;
     }
 
     public Booking(User user, Car car) {
+        this.ID = UUID.randomUUID();
         this.user = user;
         this.car = car;
+        this.bookingTime = LocalDateTime.now();
+        this.isCanceled = false;
     }
 
     public User getUser() {

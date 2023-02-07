@@ -25,7 +25,8 @@ public class UserFileDataAccessService implements UserDAO {
                 try {
                     users[nextAvailableIndex++] = new User(
                             UUID.fromString(userFromFile[nextFileIndex++].trim()),
-                            userFromFile[nextFileIndex++].trim());
+                            userFromFile[nextFileIndex++].trim()
+                    );
                 } catch(IllegalArgumentException e) {
                     e.getMessage();
                 }
