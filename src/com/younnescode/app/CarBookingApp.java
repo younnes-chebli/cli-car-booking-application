@@ -2,12 +2,12 @@ package com.younnescode.app;
 
 import com.younnescode.booking.Booking;
 import com.younnescode.car.Car;
+import com.younnescode.car.CarFileDataAccessService;
+import com.younnescode.car.CarService;
 import com.younnescode.user.User;
 import com.younnescode.user.UserFileDataAccessService;
 import com.younnescode.user.UserService;
 
-import java.util.Arrays;
-import java.util.Objects;
 import java.util.Scanner;
 
 import static com.younnescode.carbookingapputils.CarBookingAppUtils.*;
@@ -17,6 +17,8 @@ public class CarBookingApp {
 
     public static UserFileDataAccessService userFileDataAccessService = new UserFileDataAccessService();
     public static UserService userService = new UserService(userFileDataAccessService);
+    public static CarFileDataAccessService carFileDataAccessService = new CarFileDataAccessService();
+    public static CarService carService = new CarService(carFileDataAccessService);
 
 
     private static void notValidOption() {
@@ -79,7 +81,7 @@ public class CarBookingApp {
     }
 
     private static void showAvailableCars() {
-        Car[] availableCars = Car.getAvailableCars();
+        Car[] availableCars = carService.getAvailableCars();
 
         if(!isEmpty(availableCars)) {
             for (Car availableCar : availableCars) {
@@ -93,7 +95,7 @@ public class CarBookingApp {
     }
 
     private static void showAvailableElectricCars() {
-        Car[] availableElectricCars = Car.getAvailableElectricCars();
+        Car[] availableElectricCars = carService.getAvailableElectricCars();
 
         if(!isEmpty(availableElectricCars)) {
             for (Car availableElectricCar : availableElectricCars) {
@@ -133,14 +135,14 @@ public class CarBookingApp {
         System.out.println();
         String regNumber = askForRegNumber();
         System.out.println();
-        if(Car.getAvailableCarByRegNumber(regNumber) != null) {
+        if(carService.getAvailableCarByRegNumber(regNumber) != null) {
             showUsers();
             System.out.println();
             String userId = askForUserId();
             System.out.println();
             if(userService.getUserById(userId) != null) {
                 User user = userService.getUserById(userId);
-                Car car = Car.getAvailableCarByRegNumber(regNumber);
+                Car car = carService.getAvailableCarByRegNumber(regNumber);
                 Booking booking = Booking.addBooking(user, car);
                 success(booking);
             } else {

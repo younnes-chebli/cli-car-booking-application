@@ -3,7 +3,11 @@ package com.younnescode.car;
 import java.util.UUID;
 
 public class CarService {
-    private static final CarFileDataAccessService carFileDataAccessService = new CarFileDataAccessService();
+    private final CarFileDataAccessService carFileDataAccessService;
+
+    public CarService(CarFileDataAccessService carFileDataAccessService) {
+        this.carFileDataAccessService = carFileDataAccessService;
+    }
 
     int getCarsCpt() {
         int carsCpt = 0;
@@ -27,7 +31,7 @@ public class CarService {
         return !car.isBooked() && car.isElectric();
     }
 
-    Car[] getAvailableCars() {
+    public Car[] getAvailableCars() {
         Car[] cars = carFileDataAccessService.getCars();
         Car[] availableCars = new Car[cars.length];
         int nextAvailableIndex = 0;
@@ -41,7 +45,7 @@ public class CarService {
         return availableCars;
     }
 
-    Car[] getAvailableElectricCars() {
+    public Car[] getAvailableElectricCars() {
         Car[] cars = carFileDataAccessService.getCars();
         Car[] electricCars = new Car[cars.length];
         var nextAvailableIndex = 0;
@@ -55,8 +59,8 @@ public class CarService {
         return electricCars;
     }
 
-    Car getAvailableCarByRegNumber(String regNumber) {
-        Car[] availableCars = Car.getAvailableCars();
+    public Car getAvailableCarByRegNumber(String regNumber) {
+        Car[] availableCars = getAvailableCars();
         UUID ID = null;
 
         try{

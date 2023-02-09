@@ -14,7 +14,7 @@ public class BookingService {
 
     Booking addBooking(User user, Car car) {
         car.setBooked(true);
-        car.update();
+//        update();
 
         return bookingFileDataAccessService.addBooking(user, car);
     }

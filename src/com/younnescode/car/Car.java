@@ -10,8 +10,6 @@ public class Car {
     private boolean isElectric;
     private boolean isBooked;
 
-    private static final CarService carService = new CarService();
-
     public Car(BigDecimal rentalPricePerDay, Brand brand, boolean isElectric) {
         this.REG_NUMBER = UUID.randomUUID();
         this.rentalPricePerDay = rentalPricePerDay;
@@ -36,10 +34,6 @@ public class Car {
         return brand;
     }
 
-    public static int getCarsCpt() {
-        return carService.getCarsCpt();
-    }
-
     public boolean isElectric() {
         return isElectric;
     }
@@ -54,22 +48,6 @@ public class Car {
 
     public UUID getREG_NUMBER() {
         return REG_NUMBER;
-    }
-
-    public static Car[] getAvailableCars() {
-        return carService.getAvailableCars();
-    }
-
-    public static Car getAvailableCarByRegNumber(String regNumber) {
-        return carService.getAvailableCarByRegNumber(regNumber);
-    }
-
-    public static Car[] getAvailableElectricCars() {
-        return carService.getAvailableElectricCars();
-    }
-
-    public void update() {
-        carService.update(this);
     }
 
     @Override
