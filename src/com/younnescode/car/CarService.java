@@ -9,20 +9,6 @@ public class CarService {
         this.carFileDataAccessService = carFileDataAccessService;
     }
 
-    int getCarsCpt() {
-        int carsCpt = 0;
-
-        Car[] cars = carFileDataAccessService.getCars();
-
-        for (Car car : cars) {
-            if (car != null) {
-                carsCpt++;
-            }
-        }
-
-        return carsCpt;
-    }
-
     private boolean isAvailable(Car car) {
         return !car.isBooked();
     }
@@ -78,7 +64,7 @@ public class CarService {
         return null;
     }
 
-    void update(Car updatedCar) {
+    public void update(Car updatedCar) {
         carFileDataAccessService.update(updatedCar);
     }
 }

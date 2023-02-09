@@ -13,8 +13,6 @@ public class Booking {
     private LocalDateTime bookingTime;
     private boolean isCanceled;
 
-    private static final BookingService bookingService = new BookingService();
-
     public Booking(UUID ID, User user, Car car, LocalDateTime bookingTime, boolean isCanceled) {
         this.ID = ID;
         this.user = user;
@@ -49,18 +47,6 @@ public class Booking {
 
     public User getUser() {
         return this.user;
-    }
-
-    public static Booking[] getBookings() {
-        return bookingService.getBookings();
-    }
-
-    public static Booking[] getBookingsByUser(User user) {
-        return bookingService.getBookingsByUser(user);
-    }
-
-    public static Booking addBooking(User user, Car car) {
-        return bookingService.addBooking(user, car);
     }
 
     @Override

@@ -1,25 +1,30 @@
 package com.younnescode.booking;
 
 import com.younnescode.car.Car;
+import com.younnescode.car.CarService;
 import com.younnescode.user.User;
 
-import java.awt.print.Book;
-
 public class BookingService {
-    private static final BookingFileDataAccessService bookingFileDataAccessService = new BookingFileDataAccessService();
+    private final BookingFileDataAccessService bookingFileDataAccessService;
+    private final CarService carService;
 
-    Booking[] getBookings() {
+    public BookingService(BookingFileDataAccessService bookingFileDataAccessService, CarService carService) {
+        this.bookingFileDataAccessService = bookingFileDataAccessService;
+        this.carService = carService;
+    }
+
+    public Booking[] getBookings() {
         return bookingFileDataAccessService.getBookings();
     }
 
-    Booking addBooking(User user, Car car) {
+    public Booking addBooking(User user, Car car) {
         car.setBooked(true);
-//        update();
+        carService.update(car);
 
         return bookingFileDataAccessService.addBooking(user, car);
     }
 
-    Booking[] getBookingsByUser(User user) {
+    public Booking[] getBookingsByUser(User user) {
         Booking[] bookings = bookingFileDataAccessService.getBookings();
         Booking[] bookingsByUser = new Booking[bookings.length];
         int nextAvailableIndex = 0;

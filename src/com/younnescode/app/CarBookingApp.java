@@ -1,6 +1,8 @@
 package com.younnescode.app;
 
 import com.younnescode.booking.Booking;
+import com.younnescode.booking.BookingFileDataAccessService;
+import com.younnescode.booking.BookingService;
 import com.younnescode.car.Car;
 import com.younnescode.car.CarFileDataAccessService;
 import com.younnescode.car.CarService;
@@ -13,12 +15,14 @@ import java.util.Scanner;
 import static com.younnescode.carbookingapputils.CarBookingAppUtils.*;
 
 public class CarBookingApp {
-    static Scanner scan = new Scanner(System.in);
+    private static Scanner scan = new Scanner(System.in);
 
     public static UserFileDataAccessService userFileDataAccessService = new UserFileDataAccessService();
     public static UserService userService = new UserService(userFileDataAccessService);
     public static CarFileDataAccessService carFileDataAccessService = new CarFileDataAccessService();
     public static CarService carService = new CarService(carFileDataAccessService);
+    public static BookingFileDataAccessService bookingFileDataAccessService = new BookingFileDataAccessService();
+    private static BookingService bookingService = new BookingService(bookingFileDataAccessService, carService);
 
 
     private static void notValidOption() {
@@ -143,7 +147,7 @@ public class CarBookingApp {
             if(userService.getUserById(userId) != null) {
                 User user = userService.getUserById(userId);
                 Car car = carService.getAvailableCarByRegNumber(regNumber);
-                Booking booking = Booking.addBooking(user, car);
+                Booking booking = bookingService.addBooking(user, car);
                 success(booking);
             } else {
                 noMatchingBook();
@@ -159,7 +163,7 @@ public class CarBookingApp {
         String userId = askForUserId();
         if(userService.getUserById(userId) != null) {
             User user = userService.getUserById(userId);
-            Booking[] bookingsByUser = Booking.getBookingsByUser(user);
+            Booking[] bookingsByUser = bookingService.getBookingsByUser(user);
             if(!isEmpty(bookingsByUser)) {
                 showBookings(bookingsByUser);
             } else {
@@ -171,7 +175,7 @@ public class CarBookingApp {
     }
 
     private static void viewAllBookings() {
-        Booking[] bookings = Booking.getBookings();
+        Booking[] bookings = bookingService.getBookings();
         if(isEmpty(bookings)) {
             noBookingsAvailable();
         } else {
