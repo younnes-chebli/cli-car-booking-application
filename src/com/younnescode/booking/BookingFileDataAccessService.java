@@ -104,10 +104,4 @@ public class BookingFileDataAccessService implements BookingDAO {
 
         return newBooking;
     }
-
-    //in an array
-    @Override
-    public Booking addBooking(User user, Car car, int i) {
-        return null;
-    }
 }
