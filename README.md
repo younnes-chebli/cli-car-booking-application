@@ -1,5 +1,9 @@
 # Car Booking Application
 
+## Dependency Injections (v3)
+
+We used dependency injection throughout our codebase.
+
 ## Interfaces (v2)
 
 We will change our implementation such that we use interfaces and get the data from files.
