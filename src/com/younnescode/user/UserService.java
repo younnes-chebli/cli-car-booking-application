@@ -3,13 +3,17 @@ package com.younnescode.user;
 import java.util.UUID;
 
 public class UserService {
-    private static final UserFileDataAccessService userFileDataAccessService = new UserFileDataAccessService();
+    private final UserFileDataAccessService userFileDataAccessService;
 
-    User[] getUsers() {
+    public UserService(UserFileDataAccessService userFileDataAccessService) {
+        this.userFileDataAccessService = userFileDataAccessService;
+    }
+
+    public User[] getUsers() {
         return userFileDataAccessService.getUsers();
     }
 
-    User getUserById(String userId) {
+    public User getUserById(String userId) {
         User[] users = userFileDataAccessService.getUsers();
         UUID ID = null;
 

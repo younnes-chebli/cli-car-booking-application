@@ -3,17 +3,21 @@ package com.younnescode.app;
 import com.younnescode.booking.Booking;
 import com.younnescode.car.Car;
 import com.younnescode.user.User;
+import com.younnescode.user.UserFileDataAccessService;
+import com.younnescode.user.UserService;
 
 import java.util.Arrays;
 import java.util.Objects;
 import java.util.Scanner;
 
+import static com.younnescode.carbookingapputils.CarBookingAppUtils.*;
+
 public class CarBookingApp {
     static Scanner scan = new Scanner(System.in);
 
-    private static boolean isEmpty(Object[] object) {
-        return Arrays.stream(object).allMatch(Objects::isNull);
-    }
+    public static UserFileDataAccessService userFileDataAccessService = new UserFileDataAccessService();
+    public static UserService userService = new UserService(userFileDataAccessService);
+
 
     private static void notValidOption() {
         System.out.println("⛔ Not a valid option\n");
@@ -65,7 +69,7 @@ public class CarBookingApp {
     }
 
     private static void showUsers() {
-        User[] users = User.getUsers();
+        User[] users = userService.getUsers();
 
         for (User user : users) {
             if(user != null) {
@@ -134,8 +138,8 @@ public class CarBookingApp {
             System.out.println();
             String userId = askForUserId();
             System.out.println();
-            if(User.getUserById(userId) != null) {
-                User user = User.getUserById(userId);
+            if(userService.getUserById(userId) != null) {
+                User user = userService.getUserById(userId);
                 Car car = Car.getAvailableCarByRegNumber(regNumber);
                 Booking booking = Booking.addBooking(user, car);
                 success(booking);
@@ -151,8 +155,8 @@ public class CarBookingApp {
         showUsers();
         System.out.println();
         String userId = askForUserId();
-        if(User.getUserById(userId) != null) {
-            User user = User.getUserById(userId);
+        if(userService.getUserById(userId) != null) {
+            User user = userService.getUserById(userId);
             Booking[] bookingsByUser = Booking.getBookingsByUser(user);
             if(!isEmpty(bookingsByUser)) {
                 showBookings(bookingsByUser);
@@ -191,11 +195,6 @@ public class CarBookingApp {
         showUsers();
         System.out.println();
         showMenu();
-    }
-
-    private static void exit() {
-        System.out.println("\uD83D\uDC4B Bye Bye \uD83D\uDE04");
-        System.exit(0);
     }
 
     static void showMenu() {
