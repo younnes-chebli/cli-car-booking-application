@@ -10,17 +10,17 @@ public class UserFileDataAccessService implements UserDAO {
 
     @Override
     public User[] getUsers() {
-        User[] users = new User[4];
-        int nextAvailableIndex = 0;
+        var users = new User[4];
+        var nextAvailableIndex = 0;
 
         try {
-            Scanner scanner = new Scanner(usersFile);
+            var scanner = new Scanner(usersFile);
 
             scanner.nextLine();
             while(scanner.hasNext()) {
-                String fileLine = scanner.nextLine();
-                String[] userFromFile = fileLine.split(",");
-                int nextFileIndex = 0;
+                var fileLine = scanner.nextLine();
+                var userFromFile = fileLine.split(",");
+                var nextFileIndex = 0;
 
                 try {
                     users[nextAvailableIndex++] = new User(

@@ -18,11 +18,11 @@ public class CarService {
     }
 
     public Car[] getAvailableCars() {
-        Car[] cars = carFileDataAccessService.getCars();
-        Car[] availableCars = new Car[cars.length];
-        int nextAvailableIndex = 0;
+        var cars = carFileDataAccessService.getCars();
+        var availableCars = new Car[cars.length];
+        var nextAvailableIndex = 0;
 
-        for (Car car : cars) {
+        for (var car : cars) {
             if (car != null && isAvailable(car)) {
                 availableCars[nextAvailableIndex++] = car;
             }
@@ -32,11 +32,11 @@ public class CarService {
     }
 
     public Car[] getAvailableElectricCars() {
-        Car[] cars = carFileDataAccessService.getCars();
-        Car[] electricCars = new Car[cars.length];
+        var cars = carFileDataAccessService.getCars();
+        var electricCars = new Car[cars.length];
         var nextAvailableIndex = 0;
 
-        for (Car car : cars) {
+        for (var car : cars) {
             if(car != null && isAvailableElectric(car)) {
                 electricCars[nextAvailableIndex++] = car;
             }
@@ -46,7 +46,7 @@ public class CarService {
     }
 
     public Car getAvailableCarByRegNumber(String regNumber) {
-        Car[] availableCars = getAvailableCars();
+        var availableCars = getAvailableCars();
         UUID ID = null;
 
         try{
@@ -55,7 +55,7 @@ public class CarService {
             e.getMessage();
         }
 
-        for (Car availableCar : availableCars) {
+        for (var availableCar : availableCars) {
             if(availableCar != null && availableCar.getREG_NUMBER().equals(ID)) {
                 return availableCar;
             }

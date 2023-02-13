@@ -25,11 +25,11 @@ public class BookingService {
     }
 
     public Booking[] getBookingsByUser(User user) {
-        Booking[] bookings = bookingFileDataAccessService.getBookings();
-        Booking[] bookingsByUser = new Booking[bookings.length];
+        var bookings = bookingFileDataAccessService.getBookings();
+        var bookingsByUser = new Booking[bookings.length];
         int nextAvailableIndex = 0;
 
-        for (Booking booking : bookings) {
+        for (var booking : bookings) {
             if (booking != null && booking.getUser().equals(user)) {
                 bookingsByUser[nextAvailableIndex++] = booking;
             }

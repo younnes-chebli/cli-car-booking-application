@@ -6,7 +6,6 @@ import com.younnescode.booking.BookingService;
 import com.younnescode.car.Car;
 import com.younnescode.car.CarFileDataAccessService;
 import com.younnescode.car.CarService;
-import com.younnescode.user.User;
 import com.younnescode.user.UserFileDataAccessService;
 import com.younnescode.user.UserService;
 
@@ -75,9 +74,9 @@ public class CarBookingApp {
     }
 
     private static void showUsers() {
-        User[] users = userService.getUsers();
+        var users = userService.getUsers();
 
-        for (User user : users) {
+        for (var user : users) {
             if(user != null) {
                 System.out.println("\uD83D\uDE09 " + user);
             }
@@ -85,7 +84,7 @@ public class CarBookingApp {
     }
 
     private static void showAvailableCars() {
-        Car[] availableCars = carService.getAvailableCars();
+        var availableCars = carService.getAvailableCars();
 
         if(!isEmpty(availableCars)) {
             for (Car availableCar : availableCars) {
@@ -99,10 +98,10 @@ public class CarBookingApp {
     }
 
     private static void showAvailableElectricCars() {
-        Car[] availableElectricCars = carService.getAvailableElectricCars();
+        var availableElectricCars = carService.getAvailableElectricCars();
 
         if(!isEmpty(availableElectricCars)) {
-            for (Car availableElectricCar : availableElectricCars) {
+            for (var availableElectricCar : availableElectricCars) {
                 if(availableElectricCar != null) {
                     System.out.println("\uD83D\uDE97 " + availableElectricCar);
                 }
@@ -113,7 +112,7 @@ public class CarBookingApp {
     }
 
     private static void showBookings(Booking[] bookings) {
-        for (Booking booking : bookings) {
+        for (var booking : bookings) {
             if(booking != null) {
                 System.out.println("\uD83D\uDD11 " + booking);
             }
@@ -145,9 +144,9 @@ public class CarBookingApp {
             String userId = askForUserId();
             System.out.println();
             if(userService.getUserById(userId) != null) {
-                User user = userService.getUserById(userId);
-                Car car = carService.getAvailableCarByRegNumber(regNumber);
-                Booking booking = bookingService.addBooking(user, car);
+                var user = userService.getUserById(userId);
+                var car = carService.getAvailableCarByRegNumber(regNumber);
+                var booking = bookingService.addBooking(user, car);
                 success(booking);
             } else {
                 noMatchingBook();
@@ -160,10 +159,10 @@ public class CarBookingApp {
     private static void viewAllUsersBookedCars() {
         showUsers();
         System.out.println();
-        String userId = askForUserId();
+        var userId = askForUserId();
         if(userService.getUserById(userId) != null) {
-            User user = userService.getUserById(userId);
-            Booking[] bookingsByUser = bookingService.getBookingsByUser(user);
+            var user = userService.getUserById(userId);
+            var bookingsByUser = bookingService.getBookingsByUser(user);
             if(!isEmpty(bookingsByUser)) {
                 showBookings(bookingsByUser);
             } else {
@@ -175,7 +174,7 @@ public class CarBookingApp {
     }
 
     private static void viewAllBookings() {
-        Booking[] bookings = bookingService.getBookings();
+        var bookings = bookingService.getBookings();
         if(isEmpty(bookings)) {
             noBookingsAvailable();
         } else {
@@ -214,7 +213,7 @@ public class CarBookingApp {
                         "6️⃣ View All Users\n" +
                         "7️⃣ Exit\n"
         );
-        String option = scan.nextLine();
+        var option = scan.nextLine();
         switch (option) {
             case "1":
                 bookCar();

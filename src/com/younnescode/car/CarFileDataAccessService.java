@@ -10,17 +10,17 @@ public class CarFileDataAccessService implements CarDAO {
 
     @Override
     public Car[] getCars() {
-        Car[] cars = new Car[3];
-        int nextAvailableIndex = 0;
+        var cars = new Car[3];
+        var nextAvailableIndex = 0;
 
         try {
-            Scanner scanner = new Scanner(carsFile);
+            var scanner = new Scanner(carsFile);
 
             scanner.nextLine();
             while(scanner.hasNext()) {
-                String fileLine = scanner.nextLine();
-                String[] carFromFile = fileLine.split(",");
-                int nextLineIndex = 0;
+                var fileLine = scanner.nextLine();
+                var carFromFile = fileLine.split(",");
+                var nextLineIndex = 0;
 
                 try {
                     cars[nextAvailableIndex++] = new Car(
@@ -43,10 +43,10 @@ public class CarFileDataAccessService implements CarDAO {
 
     @Override
     public void update(Car updatedCar) {
-        Car[] cars = getCars();
-        Car[] updatedCars = new Car[cars.length];
+        var cars = getCars();
+        var updatedCars = new Car[cars.length];
 
-        for(int i = 0; i < cars.length; i++) {
+        for(var i = 0; i < cars.length; i++) {
             if(cars[i].getREG_NUMBER().equals(updatedCar.getREG_NUMBER())) {
                 updatedCars[i] = updatedCar;
             } else {
@@ -55,11 +55,11 @@ public class CarFileDataAccessService implements CarDAO {
         }
 
         try (
-                FileWriter fileWriter = new FileWriter(carsFile);
-                PrintWriter printWriter = new PrintWriter(fileWriter);
+                var fileWriter = new FileWriter(carsFile);
+                var printWriter = new PrintWriter(fileWriter);
         ) {
             printWriter.println("regNumber, rentalPricePerDay, brand, isElectric, isBooked");
-            for (Car car : updatedCars) {
+            for (var car : updatedCars) {
                 printWriter.print(
                         car.getREG_NUMBER()+ ", " +
                         car.getRentalPricePerDay() + ", " +

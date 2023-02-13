@@ -15,10 +15,10 @@ public class BookingFileDataAccessService implements BookingDAO {
     private static final File bookingsFile = new File("src/com/younnescode/files/bookings.csv");
 
     private int getBookingsCount() {
-        int count = 0;
+        var count = 0;
 
         try {
-            Scanner scanner = new Scanner(bookingsFile);
+            var scanner = new Scanner(bookingsFile);
 
             scanner.nextLine();
             while(scanner.hasNext()) {
@@ -34,19 +34,19 @@ public class BookingFileDataAccessService implements BookingDAO {
 
     @Override
     public Booking[] getBookings() {
-        int bookingsCount = getBookingsCount();
-        Booking[] bookings = new Booking[bookingsCount];
-        int nextAvailableIndex = 0;
+        var bookingsCount = getBookingsCount();
+        var bookings = new Booking[bookingsCount];
+        var nextAvailableIndex = 0;
 
         if(bookingsCount > 0) {
             try {
-                Scanner scanner = new Scanner(bookingsFile);
+                var scanner = new Scanner(bookingsFile);
 
                 scanner.nextLine();
                 while(scanner.hasNext()) {
-                    String fileLine = scanner.nextLine();
-                    String[] bookingFromFile = fileLine.split(",");
-                    int nextLineIndex = 0;
+                    var fileLine = scanner.nextLine();
+                    var bookingFromFile = fileLine.split(",");
+                    var nextLineIndex = 0;
 
                     try {
                         bookings[nextAvailableIndex++] = new Booking(
@@ -79,11 +79,11 @@ public class BookingFileDataAccessService implements BookingDAO {
 
     @Override
     public Booking addBooking(User user, Car car) {
-        Booking newBooking = new Booking(UUID.randomUUID(), user, car, LocalDateTime.now(), false);
+        var newBooking = new Booking(UUID.randomUUID(), user, car, LocalDateTime.now(), false);
 
         try (
-                FileWriter fileWriter = new FileWriter(bookingsFile, true);
-                PrintWriter printWriter = new PrintWriter(fileWriter);
+                var fileWriter = new FileWriter(bookingsFile, true);
+                var printWriter = new PrintWriter(fileWriter);
         ) {
             printWriter.println();
             printWriter.print(

@@ -14,7 +14,7 @@ public class UserService {
     }
 
     public User getUserById(String userId) {
-        User[] users = userFileDataAccessService.getUsers();
+        var users = userFileDataAccessService.getUsers();
         UUID ID = null;
 
         try{
@@ -23,7 +23,7 @@ public class UserService {
             e.getMessage();
         }
 
-        for (User user : users) {
+        for (var user : users) {
             if(user != null && user.getID().equals(ID)) {
                 return user;
             }
