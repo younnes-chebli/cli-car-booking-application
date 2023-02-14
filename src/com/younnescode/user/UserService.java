@@ -3,9 +3,9 @@ package com.younnescode.user;
 import java.util.UUID;
 
 public class UserService {
-    private final UserFileDataAccessService userFileDataAccessService;
+    private final UserDAO userFileDataAccessService;
 
-    public UserService(UserFileDataAccessService userFileDataAccessService) {
+    public UserService(UserDAO userFileDataAccessService) {
         this.userFileDataAccessService = userFileDataAccessService;
     }
 

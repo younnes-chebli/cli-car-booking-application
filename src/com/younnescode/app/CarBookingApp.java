@@ -1,11 +1,14 @@
 package com.younnescode.app;
 
 import com.younnescode.booking.Booking;
+import com.younnescode.booking.BookingDAO;
 import com.younnescode.booking.BookingFileDataAccessService;
 import com.younnescode.booking.BookingService;
 import com.younnescode.car.Car;
+import com.younnescode.car.CarDAO;
 import com.younnescode.car.CarFileDataAccessService;
 import com.younnescode.car.CarService;
+import com.younnescode.user.UserDAO;
 import com.younnescode.user.UserFileDataAccessService;
 import com.younnescode.user.UserService;
 
@@ -16,13 +19,12 @@ import static com.younnescode.carbookingapputils.CarBookingAppUtils.*;
 public class CarBookingApp {
     private static Scanner scan = new Scanner(System.in);
 
-    public static UserFileDataAccessService userFileDataAccessService = new UserFileDataAccessService();
+    public static UserDAO userFileDataAccessService = new UserFileDataAccessService();
     public static UserService userService = new UserService(userFileDataAccessService);
-    public static CarFileDataAccessService carFileDataAccessService = new CarFileDataAccessService();
+    public static CarDAO carFileDataAccessService = new CarFileDataAccessService();
     public static CarService carService = new CarService(carFileDataAccessService);
-    public static BookingFileDataAccessService bookingFileDataAccessService = new BookingFileDataAccessService();
+    public static BookingDAO bookingFileDataAccessService = new BookingFileDataAccessService();
     private static BookingService bookingService = new BookingService(bookingFileDataAccessService, carService);
-
 
     private static void notValidOption() {
         System.out.println("⛔ Not a valid option\n");

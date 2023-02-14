@@ -3,9 +3,9 @@ package com.younnescode.car;
 import java.util.UUID;
 
 public class CarService {
-    private final CarFileDataAccessService carFileDataAccessService;
+    private final CarDAO carFileDataAccessService;
 
-    public CarService(CarFileDataAccessService carFileDataAccessService) {
+    public CarService(CarDAO carFileDataAccessService) {
         this.carFileDataAccessService = carFileDataAccessService;
     }
 

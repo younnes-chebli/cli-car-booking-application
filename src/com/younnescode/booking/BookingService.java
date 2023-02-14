@@ -5,10 +5,10 @@ import com.younnescode.car.CarService;
 import com.younnescode.user.User;
 
 public class BookingService {
-    private final BookingFileDataAccessService bookingFileDataAccessService;
+    private final BookingDAO bookingFileDataAccessService;
     private final CarService carService;
 
-    public BookingService(BookingFileDataAccessService bookingFileDataAccessService, CarService carService) {
+    public BookingService(BookingDAO bookingFileDataAccessService, CarService carService) {
         this.bookingFileDataAccessService = bookingFileDataAccessService;
         this.carService = carService;
     }
