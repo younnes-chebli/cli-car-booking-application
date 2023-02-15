@@ -17,6 +17,7 @@ import java.util.Scanner;
 import static com.younnescode.carbookingapputils.CarBookingAppUtils.*;
 
 public class CarBookingApp {
+
     private static Scanner scan = new Scanner(System.in);
 
     public static UserDAO userFileDataAccessService = new UserFileDataAccessService();
@@ -244,6 +245,6 @@ public class CarBookingApp {
     }
 
     public static void main(String[] args) {
-            showMenu();
+        showMenu();
         }
     }
