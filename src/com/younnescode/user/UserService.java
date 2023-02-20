@@ -1,5 +1,6 @@
 package com.younnescode.user;
 
+import java.util.List;
 import java.util.UUID;
 
 public class UserService {
@@ -9,7 +10,7 @@ public class UserService {
         this.userFileDataAccessService = userFileDataAccessService;
     }
 
-    public User[] getUsers() {
+    public List<User> getUsers() {
         return userFileDataAccessService.getUsers();
     }
 
@@ -24,7 +25,7 @@ public class UserService {
         }
 
         for (var user : users) {
-            if(user != null && user.getID().equals(ID)) {
+            if(user.getID().equals(ID)) {
                 return user;
             }
         }

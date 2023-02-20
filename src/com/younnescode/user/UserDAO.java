@@ -1,5 +1,7 @@
 package com.younnescode.user;
 
+import java.util.List;
+
 public interface UserDAO {
-    User[] getUsers();
+    List<User> getUsers();
 }

@@ -8,7 +8,7 @@ import com.younnescode.car.CarDAO;
 import com.younnescode.car.CarDataAccessService;
 import com.younnescode.car.CarService;
 import com.younnescode.user.UserDAO;
-import com.younnescode.user.UserFileDataAccessService;
+import com.younnescode.user.UserDataAccessService;
 import com.younnescode.user.UserService;
 
 import java.util.List;
@@ -18,7 +18,7 @@ public class CarBookingApp {
 
     private static Scanner scan = new Scanner(System.in);
 
-    public static UserDAO userFileDataAccessService = new UserFileDataAccessService();
+    public static UserDAO userFileDataAccessService = new UserDataAccessService();
     public static UserService userService = new UserService(userFileDataAccessService);
     public static CarDAO carFileDataAccessService = new CarDataAccessService();
     public static CarService carService = new CarService(carFileDataAccessService);
@@ -82,11 +82,9 @@ public class CarBookingApp {
     private static void showUsers() {
         var users = userService.getUsers();
 
-        for (var user : users) {
-            if(user != null) {
-                System.out.println("\uD83D\uDE09 " + user);
-            }
-        }
+        users.forEach(e -> {
+            System.out.println("\uD83D\uDE09 " + e);
+        });
     }
 
     private static void showAvailableCars() {
@@ -165,7 +163,7 @@ public class CarBookingApp {
         if(userService.getUserById(userId) != null) {
             var user = userService.getUserById(userId);
             var bookingsByUser = bookingService.getBookingsByUser(user);
-            if(bookingsByUser.isEmpty()) {
+            if(!bookingsByUser.isEmpty()) {
                 showBookings(bookingsByUser);
             } else {
                 noCarsBooked();
