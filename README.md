@@ -83,7 +83,3 @@ After Booking
 * View All Users
 
 ![image](https://user-images.githubusercontent.com/106768273/215434123-aa12b1a3-5240-4f59-9a91-a4b005fe5bdc.png)
-
-### Important
-* We will use Arrays to hold any data. We will not use Lists at the first point. We will later.
-* We also won't use dependency injection at this point. We will later.
