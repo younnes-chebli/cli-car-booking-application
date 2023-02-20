@@ -4,17 +4,14 @@ import com.younnescode.booking.Booking;
 import com.younnescode.booking.BookingDAO;
 import com.younnescode.booking.BookingDataAccessService;
 import com.younnescode.booking.BookingService;
-import com.younnescode.car.Car;
 import com.younnescode.car.CarDAO;
-import com.younnescode.car.CarFileDataAccessService;
+import com.younnescode.car.CarDataAccessService;
 import com.younnescode.car.CarService;
 import com.younnescode.user.UserDAO;
 import com.younnescode.user.UserFileDataAccessService;
 import com.younnescode.user.UserService;
 
-import java.util.Arrays;
 import java.util.List;
-import java.util.Objects;
 import java.util.Scanner;
 
 public class CarBookingApp {
@@ -23,7 +20,7 @@ public class CarBookingApp {
 
     public static UserDAO userFileDataAccessService = new UserFileDataAccessService();
     public static UserService userService = new UserService(userFileDataAccessService);
-    public static CarDAO carFileDataAccessService = new CarFileDataAccessService();
+    public static CarDAO carFileDataAccessService = new CarDataAccessService();
     public static CarService carService = new CarService(carFileDataAccessService);
     public static BookingDAO bookingFileDataAccessService = new BookingDataAccessService();
     private static BookingService bookingService = new BookingService(bookingFileDataAccessService, carService);
@@ -95,12 +92,10 @@ public class CarBookingApp {
     private static void showAvailableCars() {
         var availableCars = carService.getAvailableCars();
 
-        if(!Arrays.stream(availableCars).allMatch(Objects::isNull)) {
-            for (Car availableCar : availableCars) {
-                if(availableCar != null) {
-                    System.out.println("\uD83D\uDE97 " + availableCar);
-                }
-            }
+        if(!availableCars.isEmpty()) {
+            availableCars.forEach(e -> {
+                System.out.println("\uD83D\uDE97 " + e);
+            });
         } else {
             noAvailableCars();
         }
@@ -109,23 +104,20 @@ public class CarBookingApp {
     private static void showAvailableElectricCars() {
         var availableElectricCars = carService.getAvailableElectricCars();
 
-        if(!Arrays.stream(availableElectricCars).allMatch(Objects::isNull)) {
-            for (var availableElectricCar : availableElectricCars) {
-                if(availableElectricCar != null) {
-                    System.out.println("\uD83D\uDE97 " + availableElectricCar);
-                }
-            }
+        if(!availableElectricCars.isEmpty()) {
+            availableElectricCars.forEach(e -> {
+                System.out.println("\uD83D\uDE97 " + e);
+            });
         } else {
             noAvailableElectricCars();
         }
     }
 
     private static void showBookings(List<Booking> bookings) {
-        for (var booking : bookings) {
-            if(booking != null) {
-                System.out.println("\uD83D\uDD11 " + booking);
-            }
-        }
+        bookings.forEach(e -> {
+            System.out.println("\uD83D\uDD11 " + e);
+        });
+
         System.out.println();
         showMenu();
     }

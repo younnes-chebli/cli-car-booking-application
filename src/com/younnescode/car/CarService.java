@@ -1,12 +1,14 @@
 package com.younnescode.car;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 public class CarService {
-    private final CarDAO carFileDataAccessService;
+    private final CarDAO carDataAccessService;
 
     public CarService(CarDAO carFileDataAccessService) {
-        this.carFileDataAccessService = carFileDataAccessService;
+        this.carDataAccessService = carFileDataAccessService;
     }
 
     private boolean isAvailable(Car car) {
@@ -17,30 +19,28 @@ public class CarService {
         return !car.isBooked() && car.isElectric();
     }
 
-    public Car[] getAvailableCars() {
-        var cars = carFileDataAccessService.getCars();
-        var availableCars = new Car[cars.length];
-        var nextAvailableIndex = 0;
+    public List<Car> getAvailableCars() {
+        var cars = carDataAccessService.getCars();
+        var availableCars = new ArrayList<Car>();
 
-        for (var car : cars) {
-            if (car != null && isAvailable(car)) {
-                availableCars[nextAvailableIndex++] = car;
+        cars.forEach(e -> {
+            if(isAvailable(e)) {
+                availableCars.add(e);
             }
-        }
+        });
 
         return availableCars;
     }
 
-    public Car[] getAvailableElectricCars() {
-        var cars = carFileDataAccessService.getCars();
-        var electricCars = new Car[cars.length];
-        var nextAvailableIndex = 0;
+    public List<Car> getAvailableElectricCars() {
+        var cars = carDataAccessService.getCars();
+        var electricCars = new ArrayList<Car>();
 
-        for (var car : cars) {
-            if(car != null && isAvailableElectric(car)) {
-                electricCars[nextAvailableIndex++] = car;
+        cars.forEach(e -> {
+            if(isAvailableElectric(e)) {
+                electricCars.add(e);
             }
-        }
+        });
 
         return electricCars;
     }
@@ -56,7 +56,7 @@ public class CarService {
         }
 
         for (var availableCar : availableCars) {
-            if(availableCar != null && availableCar.getREG_NUMBER().equals(ID)) {
+            if(availableCar.getREG_NUMBER().equals(ID)) {
                 return availableCar;
             }
         }
@@ -65,6 +65,6 @@ public class CarService {
     }
 
     public void update(Car updatedCar) {
-        carFileDataAccessService.update(updatedCar);
+        carDataAccessService.update(updatedCar);
     }
 }

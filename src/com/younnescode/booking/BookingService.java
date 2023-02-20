@@ -31,11 +31,11 @@ public class BookingService {
         var bookings = bookingDataAccessService.getBookings();
         var bookingsByUser = new ArrayList<Booking>();
 
-        for (var booking : bookings) {
-            if (booking != null && booking.getUser().equals(user)) {
-                bookingsByUser.add(booking);
+        bookings.forEach(e -> {
+            if (e.getUser().equals(user)) {
+                bookingsByUser.add(e);
             }
-        }
+        });
 
         return bookingsByUser;
     }
