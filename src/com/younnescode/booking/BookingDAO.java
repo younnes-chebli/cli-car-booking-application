@@ -3,8 +3,12 @@ package com.younnescode.booking;
 import com.younnescode.car.Car;
 import com.younnescode.user.User;
 
-public interface BookingDAO {
-    Booking[] getBookings();
+import java.util.List;
 
-    Booking addBooking(User user, Car car);
+public interface BookingDAO {
+    List<Booking> getBookings();
+
+    void addBooking(User user, Car car);
+
+    Booking getLastInserted();
 }

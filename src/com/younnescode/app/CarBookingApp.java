@@ -2,7 +2,7 @@ package com.younnescode.app;
 
 import com.younnescode.booking.Booking;
 import com.younnescode.booking.BookingDAO;
-import com.younnescode.booking.BookingFileDataAccessService;
+import com.younnescode.booking.BookingDataAccessService;
 import com.younnescode.booking.BookingService;
 import com.younnescode.car.Car;
 import com.younnescode.car.CarDAO;
@@ -13,6 +13,7 @@ import com.younnescode.user.UserFileDataAccessService;
 import com.younnescode.user.UserService;
 
 import java.util.Arrays;
+import java.util.List;
 import java.util.Objects;
 import java.util.Scanner;
 
@@ -24,7 +25,7 @@ public class CarBookingApp {
     public static UserService userService = new UserService(userFileDataAccessService);
     public static CarDAO carFileDataAccessService = new CarFileDataAccessService();
     public static CarService carService = new CarService(carFileDataAccessService);
-    public static BookingDAO bookingFileDataAccessService = new BookingFileDataAccessService();
+    public static BookingDAO bookingFileDataAccessService = new BookingDataAccessService();
     private static BookingService bookingService = new BookingService(bookingFileDataAccessService, carService);
 
     public static void exit() {
@@ -119,7 +120,7 @@ public class CarBookingApp {
         }
     }
 
-    private static void showBookings(Booking[] bookings) {
+    private static void showBookings(List<Booking> bookings) {
         for (var booking : bookings) {
             if(booking != null) {
                 System.out.println("\uD83D\uDD11 " + booking);
@@ -154,8 +155,9 @@ public class CarBookingApp {
             if(userService.getUserById(userId) != null) {
                 var user = userService.getUserById(userId);
                 var car = carService.getAvailableCarByRegNumber(regNumber);
-                var booking = bookingService.addBooking(user, car);
-                success(booking);
+                bookingService.addBooking(user, car);
+                var newBooking = bookingService.getLastInserted();
+                success(newBooking);
             } else {
                 noMatchingBook();
             }
@@ -171,7 +173,7 @@ public class CarBookingApp {
         if(userService.getUserById(userId) != null) {
             var user = userService.getUserById(userId);
             var bookingsByUser = bookingService.getBookingsByUser(user);
-            if(!Arrays.stream(bookingsByUser).allMatch(Objects::isNull)) {
+            if(bookingsByUser.isEmpty()) {
                 showBookings(bookingsByUser);
             } else {
                 noCarsBooked();
@@ -183,7 +185,7 @@ public class CarBookingApp {
 
     private static void viewAllBookings() {
         var bookings = bookingService.getBookings();
-        if(!Arrays.stream(bookings).allMatch(Objects::isNull)) {
+        if(bookings.isEmpty()) {
             noBookingsAvailable();
         } else {
             showBookings(bookings);

@@ -1,3 +1,0 @@
-id, userId, userName, carRegNumber, carRentalPricePerDay, carBrand, carIsElectric, carIsBooked, bookingTime, isCanceled
-e35f604e-e9b6-4084-ba1a-f75adc0a25d6, 7e4b9220-a47a-45a7-a33b-7182ee0dc30e, Leila, dfcf734e-0b17-437f-be4b-7732bf5162a7, 89.00, TESLA, true, true, 2023-02-07T14:02:57.441699900, false
-c80938a4-b2ee-4ef2-a6fa-492d2a79105b, 1fda7774-b948-42fa-ad35-7eb1a7248e35, Samira, 8372ddb0-c8f0-42bf-b62a-95c3f2f28bb8, 77.00, MERCEDES, false, true, 2023-02-09T20:08:17.608754900, false

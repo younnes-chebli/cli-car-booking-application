@@ -4,37 +4,43 @@ import com.younnescode.car.Car;
 import com.younnescode.car.CarService;
 import com.younnescode.user.User;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class BookingService {
-    private final BookingDAO bookingFileDataAccessService;
+    private final BookingDAO bookingDataAccessService;
     private final CarService carService;
 
     public BookingService(BookingDAO bookingFileDataAccessService, CarService carService) {
-        this.bookingFileDataAccessService = bookingFileDataAccessService;
+        this.bookingDataAccessService = bookingFileDataAccessService;
         this.carService = carService;
     }
 
-    public Booking[] getBookings() {
-        return bookingFileDataAccessService.getBookings();
+    public List<Booking> getBookings() {
+        return bookingDataAccessService.getBookings();
     }
 
-    public Booking addBooking(User user, Car car) {
+    public void addBooking(User user, Car car) {
         car.setBooked(true);
         carService.update(car);
 
-        return bookingFileDataAccessService.addBooking(user, car);
+        bookingDataAccessService.addBooking(user, car);
     }
 
-    public Booking[] getBookingsByUser(User user) {
-        var bookings = bookingFileDataAccessService.getBookings();
-        var bookingsByUser = new Booking[bookings.length];
-        int nextAvailableIndex = 0;
+    public List<Booking> getBookingsByUser(User user) {
+        var bookings = bookingDataAccessService.getBookings();
+        var bookingsByUser = new ArrayList<Booking>();
 
         for (var booking : bookings) {
             if (booking != null && booking.getUser().equals(user)) {
-                bookingsByUser[nextAvailableIndex++] = booking;
+                bookingsByUser.add(booking);
             }
         }
 
         return bookingsByUser;
+    }
+
+    public Booking getLastInserted() {
+        return bookingDataAccessService.getLastInserted();
     }
 }
