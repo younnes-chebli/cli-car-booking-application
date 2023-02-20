@@ -12,9 +12,9 @@ import com.younnescode.user.UserDAO;
 import com.younnescode.user.UserFileDataAccessService;
 import com.younnescode.user.UserService;
 
+import java.util.Arrays;
+import java.util.Objects;
 import java.util.Scanner;
-
-import static com.younnescode.carbookingapputils.CarBookingAppUtils.*;
 
 public class CarBookingApp {
 
@@ -26,6 +26,11 @@ public class CarBookingApp {
     public static CarService carService = new CarService(carFileDataAccessService);
     public static BookingDAO bookingFileDataAccessService = new BookingFileDataAccessService();
     private static BookingService bookingService = new BookingService(bookingFileDataAccessService, carService);
+
+    public static void exit() {
+        System.out.println("\uD83D\uDC4B Bye Bye \uD83D\uDE04");
+        System.exit(0);
+    }
 
     private static void notValidOption() {
         System.out.println("⛔ Not a valid option\n");
@@ -89,7 +94,7 @@ public class CarBookingApp {
     private static void showAvailableCars() {
         var availableCars = carService.getAvailableCars();
 
-        if(!isEmpty(availableCars)) {
+        if(!Arrays.stream(availableCars).allMatch(Objects::isNull)) {
             for (Car availableCar : availableCars) {
                 if(availableCar != null) {
                     System.out.println("\uD83D\uDE97 " + availableCar);
@@ -103,7 +108,7 @@ public class CarBookingApp {
     private static void showAvailableElectricCars() {
         var availableElectricCars = carService.getAvailableElectricCars();
 
-        if(!isEmpty(availableElectricCars)) {
+        if(!Arrays.stream(availableElectricCars).allMatch(Objects::isNull)) {
             for (var availableElectricCar : availableElectricCars) {
                 if(availableElectricCar != null) {
                     System.out.println("\uD83D\uDE97 " + availableElectricCar);
@@ -166,7 +171,7 @@ public class CarBookingApp {
         if(userService.getUserById(userId) != null) {
             var user = userService.getUserById(userId);
             var bookingsByUser = bookingService.getBookingsByUser(user);
-            if(!isEmpty(bookingsByUser)) {
+            if(!Arrays.stream(bookingsByUser).allMatch(Objects::isNull)) {
                 showBookings(bookingsByUser);
             } else {
                 noCarsBooked();
@@ -178,7 +183,7 @@ public class CarBookingApp {
 
     private static void viewAllBookings() {
         var bookings = bookingService.getBookings();
-        if(isEmpty(bookings)) {
+        if(!Arrays.stream(bookings).allMatch(Objects::isNull)) {
             noBookingsAvailable();
         } else {
             showBookings(bookings);
