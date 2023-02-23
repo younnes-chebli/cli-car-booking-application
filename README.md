@@ -1,5 +1,8 @@
 # Car Booking Application
 
+### Technologies used
+* Java
+
 ## Initial Implementation
 
 As an admin for a car company I would like to have an application to book cars and view users.
