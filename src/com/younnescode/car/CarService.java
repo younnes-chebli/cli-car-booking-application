@@ -3,6 +3,7 @@ package com.younnescode.car;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 public class CarService {
     private final CarDAO carDataAccessService;
@@ -11,36 +12,22 @@ public class CarService {
         this.carDataAccessService = carFileDataAccessService;
     }
 
-    private boolean isAvailable(Car car) {
-        return !car.isBooked();
-    }
-
-    private boolean isAvailableElectric(Car car) {
-        return !car.isBooked() && car.isElectric();
-    }
-
     public List<Car> getAvailableCars() {
         var cars = carDataAccessService.getCars();
-        var availableCars = new ArrayList<Car>();
 
-        cars.forEach(e -> {
-            if(isAvailable(e)) {
-                availableCars.add(e);
-            }
-        });
+        var availableCars = cars.stream()
+                .filter(c -> !c.isBooked())
+                .collect(Collectors.toList());
 
         return availableCars;
     }
 
     public List<Car> getAvailableElectricCars() {
         var cars = carDataAccessService.getCars();
-        var electricCars = new ArrayList<Car>();
 
-        cars.forEach(e -> {
-            if(isAvailableElectric(e)) {
-                electricCars.add(e);
-            }
-        });
+        var electricCars = cars.stream()
+                .filter(c -> !c.isBooked() && c.isElectric())
+                .collect(Collectors.toList());
 
         return electricCars;
     }

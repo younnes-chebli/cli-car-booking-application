@@ -4,8 +4,8 @@ import com.younnescode.car.Car;
 import com.younnescode.car.CarService;
 import com.younnescode.user.User;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class BookingService {
     private final BookingDAO bookingDataAccessService;
@@ -29,13 +29,10 @@ public class BookingService {
 
     public List<Booking> getBookingsByUser(User user) {
         var bookings = bookingDataAccessService.getBookings();
-        var bookingsByUser = new ArrayList<Booking>();
 
-        bookings.forEach(e -> {
-            if (e.getUser().equals(user)) {
-                bookingsByUser.add(e);
-            }
-        });
+        var bookingsByUser = bookings.stream()
+                .filter(b -> b.getUser().equals(user))
+                .collect(Collectors.toList());
 
         return bookingsByUser;
     }
