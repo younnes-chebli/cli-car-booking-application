@@ -26,14 +26,6 @@ public class Car {
         this.isBooked = isBooked;
     }
 
-    public BigDecimal getRentalPricePerDay() {
-        return rentalPricePerDay;
-    }
-
-    public Brand getBrand() {
-        return brand;
-    }
-
     public boolean isElectric() {
         return isElectric;
     }
