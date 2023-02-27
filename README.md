@@ -2,6 +2,7 @@
 
 ### Technologies used
 * Java
+* Maven
 
 ## Initial Implementation
 
