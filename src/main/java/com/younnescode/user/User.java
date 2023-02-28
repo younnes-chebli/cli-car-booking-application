@@ -16,6 +16,13 @@ public class User {
         this.email = email;
     }
 
+    public User(UUID ID, String firsname, String lastname, String email) {
+        this.ID = ID;
+        this.firsname = firsname;
+        this.lastname = lastname;
+        this.email = email;
+    }
+
     public UUID getID() {
         return ID;
     }
