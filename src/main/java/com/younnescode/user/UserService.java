@@ -4,18 +4,18 @@ import java.util.List;
 import java.util.UUID;
 
 public class UserService {
-    private final UserDAO userFileDataAccessService;
+    private final UserDAO userDataAccessService;
 
     public UserService(UserDAO userFileDataAccessService) {
-        this.userFileDataAccessService = userFileDataAccessService;
+        this.userDataAccessService = userFileDataAccessService;
     }
 
     public List<User> getUsers() {
-        return userFileDataAccessService.getUsers();
+        return userDataAccessService.getUsers();
     }
 
     public User getUserById(String userId) {
-        var users = userFileDataAccessService.getUsers();
+        var users = userDataAccessService.getUsers();
         UUID ID = null;
 
         try{
