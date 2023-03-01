@@ -1,4 +1,4 @@
-# Car Booking Application
+# CLI Car Booking Application
 
 ### Technologies used
 * Java
