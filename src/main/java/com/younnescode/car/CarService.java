@@ -11,6 +11,10 @@ public class CarService {
         this.carDataAccessService = carFileDataAccessService;
     }
 
+    public List<Car> getAllCars() {
+        return carDataAccessService.getCars();
+    }
+
     public List<Car> getAvailableCars() {
         var cars = carDataAccessService.getCars();
 
@@ -48,9 +52,5 @@ public class CarService {
         }
 
         return null;
-    }
-
-    public void update(Car updatedCar) {
-        carDataAccessService.update(updatedCar);
     }
 }

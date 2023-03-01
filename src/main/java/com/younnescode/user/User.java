@@ -27,6 +27,30 @@ public class User {
         return ID;
     }
 
+    public String getFirsname() {
+        return firsname;
+    }
+
+    public void setFirsname(String firsname) {
+        this.firsname = firsname;
+    }
+
+    public String getLastname() {
+        return lastname;
+    }
+
+    public void setLastname(String lastname) {
+        this.lastname = lastname;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

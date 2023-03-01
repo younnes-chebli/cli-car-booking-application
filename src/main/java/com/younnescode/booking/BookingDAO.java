@@ -10,5 +10,7 @@ public interface BookingDAO {
 
     void addBooking(User user, Car car);
 
+    Booking getBookingById();
+
     Booking getLastInserted();
 }

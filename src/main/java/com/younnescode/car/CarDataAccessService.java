@@ -18,9 +18,4 @@ public class CarDataAccessService implements CarDAO {
     public List<Car> getCars() {
         return cars;
     }
-
-    @Override
-    public void update(Car car) {
-
-    }
 }

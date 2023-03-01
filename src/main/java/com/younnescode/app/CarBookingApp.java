@@ -23,7 +23,7 @@ public class CarBookingApp {
     public static CarDAO carFileDataAccessService = new CarDataAccessService();
     public static CarService carService = new CarService(carFileDataAccessService);
     public static BookingDAO bookingFileDataAccessService = new BookingDataAccessService();
-    private static BookingService bookingService = new BookingService(bookingFileDataAccessService, carService);
+    private static BookingService bookingService = new BookingService(bookingFileDataAccessService);
 
     public static void exit() {
         System.out.println("\uD83D\uDC4B Bye Bye \uD83D\uDE04");

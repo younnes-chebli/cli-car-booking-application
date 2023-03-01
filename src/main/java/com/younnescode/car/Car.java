@@ -1,6 +1,7 @@
 package com.younnescode.car;
 
 import java.math.BigDecimal;
+import java.util.Objects;
 import java.util.UUID;
 
 public class Car {
@@ -26,8 +27,32 @@ public class Car {
         this.isBooked = isBooked;
     }
 
+    public UUID getREG_NUMBER() {
+        return REG_NUMBER;
+    }
+
+    public BigDecimal getRentalPricePerDay() {
+        return rentalPricePerDay;
+    }
+
+    public void setRentalPricePerDay(BigDecimal rentalPricePerDay) {
+        this.rentalPricePerDay = rentalPricePerDay;
+    }
+
+    public Brand getBrand() {
+        return brand;
+    }
+
+    public void setBrand(Brand brand) {
+        this.brand = brand;
+    }
+
     public boolean isElectric() {
         return isElectric;
+    }
+
+    public void setElectric(boolean electric) {
+        isElectric = electric;
     }
 
     public boolean isBooked() {
@@ -38,15 +63,24 @@ public class Car {
         isBooked = booked;
     }
 
-    public UUID getREG_NUMBER() {
-        return REG_NUMBER;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Car car = (Car) o;
+        return isElectric == car.isElectric && isBooked == car.isBooked && Objects.equals(REG_NUMBER, car.REG_NUMBER) && Objects.equals(rentalPricePerDay, car.rentalPricePerDay) && brand == car.brand;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(REG_NUMBER, rentalPricePerDay, brand, isElectric, isBooked);
     }
 
     @Override
     public String toString() {
         return "Car{" +
                 "REG_NUMBER=" + REG_NUMBER +
-                ", rentalPricePerDay=" + rentalPricePerDay +
+                ", rentalPricePerDay=" + rentalPricePerDay + "€" +
                 ", brand=" + brand +
                 ", isElectric=" + isElectric +
                 ", isBooked=" + isBooked +

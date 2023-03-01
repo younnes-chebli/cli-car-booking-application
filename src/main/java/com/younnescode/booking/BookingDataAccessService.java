@@ -24,6 +24,11 @@ public class BookingDataAccessService implements BookingDAO {
     }
 
     @Override
+    public Booking getBookingById() {
+        return null;
+    }
+
+    @Override
     public Booking getLastInserted() {
         return bookings.get(bookings.size() - 1);
     }

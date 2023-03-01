@@ -1,19 +1,17 @@
 package com.younnescode.booking;
 
 import com.younnescode.car.Car;
-import com.younnescode.car.CarService;
 import com.younnescode.user.User;
 
 import java.util.List;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 public class BookingService {
     private final BookingDAO bookingDataAccessService;
-    private final CarService carService;
 
-    public BookingService(BookingDAO bookingFileDataAccessService, CarService carService) {
+    public BookingService(BookingDAO bookingFileDataAccessService) {
         this.bookingDataAccessService = bookingFileDataAccessService;
-        this.carService = carService;
     }
 
     public List<Booking> getBookings() {
@@ -22,8 +20,6 @@ public class BookingService {
 
     public void addBooking(User user, Car car) {
         car.setBooked(true);
-        carService.update(car);
-
         bookingDataAccessService.addBooking(user, car);
     }
 
@@ -35,6 +31,18 @@ public class BookingService {
                 .collect(Collectors.toList());
 
         return bookingsByUser;
+    }
+
+    public Booking getBookingById(UUID bookingId) {
+        var bookings = bookingDataAccessService.getBookings();
+
+        for (var booking : bookings) {
+            if(booking.getID().equals(bookingId)) {
+                return booking;
+            }
+        }
+
+        return null;
     }
 
     public Booking getLastInserted() {
