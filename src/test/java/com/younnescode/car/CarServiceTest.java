@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static org.assertj.core.api.Java6Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class CarServiceTest {
     CarDAO carDataAccessService = new CarDataAccessService();
@@ -20,7 +20,7 @@ public class CarServiceTest {
 
         List<Car> result = carService.getAvailableCars();
 
-        assertThat(result).isEqualTo(expected);
+        assertEquals(expected, result);
     }
 
 
@@ -33,7 +33,7 @@ public class CarServiceTest {
 
         var result = carService.getAvailableElectricCars();
 
-        assertThat(result).isEqualTo(expected);
+        assertEquals(expected, result);
     }
 
     @Test
@@ -47,6 +47,6 @@ public class CarServiceTest {
 
         var result = carService.getAvailableCarByRegNumber(firstCarREGNUMBER);
 
-        assertThat(result).isEqualTo(expected);
+        assertEquals(expected, result);
     }
 }

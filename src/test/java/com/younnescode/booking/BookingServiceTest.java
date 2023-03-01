@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.stream.Collectors;
 
-import static org.assertj.core.api.Java6Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class BookingServiceTest {
     UserDAO userDataAccessService = new UserDataAccessService();
@@ -31,7 +31,7 @@ public class BookingServiceTest {
 
         var result = bookingService.getBookingById(expected.getID());
 
-        assertThat(result).isEqualTo(expected);
+        assertEquals(expected, result);
     }
 
     @Test
@@ -45,6 +45,6 @@ public class BookingServiceTest {
 
         var result = bookingService.getBookingsByUser(user);
 
-        assertThat(result).isEqualTo(expected);
+        assertEquals(expected, result);
     }
 }

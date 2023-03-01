@@ -2,7 +2,7 @@ package com.younnescode.user;
 
 import org.junit.jupiter.api.Test;
 
-import static org.assertj.core.api.Java6Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class UserServiceTest {
     UserDAO userDataAccessService = new UserDataAccessService();
@@ -16,7 +16,7 @@ public class UserServiceTest {
 
         User result = userService.getUserById(firstUserID);
 
-        assertThat(result).isEqualTo(expected);
+        assertEquals(expected, result);
     }
 
 
