@@ -1,7 +1,7 @@
 # CLI Car Booking Application
 
 ### Technologies used
-* Java
+* Java 17
 * Maven
 
 ## Initial Implementation
